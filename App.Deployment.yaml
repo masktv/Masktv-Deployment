@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: masktv-app-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: masktv-app
+  template:
+    metadata:
+      labels:
+        app: masktv-app
+    spec:
+      containers:
+        - name: masktv-app-container
+          image: # Use the image that we build 
+          ports:
+            - containerPort: 80
+          env:
+            - name: MYSQL_HOST
+              value: "mysql-service"   # Use the service name of MySQL service
+            - name: MYSQL_DATABASE
+              value: "mydatabase"      # these value must be match with value set in MySQL Dockerfile
+            - name: MYSQL_USER
+              value: "root"            # Or your MySQL user
+            - name: MYSQL_PASSWORD
+              value: "rootpassword"    # Or your MySQL password
+
