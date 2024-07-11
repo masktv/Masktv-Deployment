@@ -7,7 +7,7 @@ RUN apt-get update && \
 # Add file which contain sites setting 
 COPY ./domain.conf /etc/apache2/sites-available/domain.conf
 RUN  ln -s /etc/apache2/sites-available/domain.conf /etc/apache2/sites-enabled/domain.conf && \
-     rm /etc/apache2/sites-enabled/000-default.con && \
+     rm /etc/apache2/sites-enabled/000-default.conf && \
      systemctl reload apache2
 
 #Add package or dependencies thats needs to install php
