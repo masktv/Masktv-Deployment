@@ -23,6 +23,9 @@ RUN apt-get update \
 RUN a2enmod rewrite \
     && a2enmod php7.4
 
+# for phpmyadmin configuration 
+RUN echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
+
 # Copy Apache configuration
 #COPY ./your-apache-config.conf /etc/apache2/sites-available/000-default.conf
 
