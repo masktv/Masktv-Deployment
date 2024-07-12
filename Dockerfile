@@ -26,8 +26,10 @@ RUN a2enmod rewrite \
 # for phpmyadmin configuration 
 RUN echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
 
-# Copy Apache configuration
-#COPY ./your-apache-config.conf /etc/apache2/sites-available/000-default.conf
+# Copy Apache site-setting configuration
+RUN  rm /etc/apache2/sites-enabled/000-default.conf
+COPY ./pod.conf /etc/apache2/sites-enabled
+COPY ./domain.conf /etc/apache2/sites-enabled
 
 # Allow PHP user to write files to HTML directory
 RUN chown -R www-data:www-data /var/www/html \
