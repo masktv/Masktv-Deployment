@@ -23,13 +23,37 @@ spec:
               memory: 100m
           env:
             - name: MYSQL_HOST
-              value: "mastv-mysql-service"   # Use the service name of MySQL service
+              value: "mastv-mysql-service"   # Service name of MySQL service
+                
+              # insert value from secrets.yaml
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name:
+                  key: 
             - name: MYSQL_DATABASE
-              value: "mydatabase"      # these value must be match with value set in MySQL Dockerfile
+              valueFrom:
+                secretKeyRef:
+                  name:
+                  key:
             - name: MYSQL_USER
-              value: "root"            # Or your MySQL user
+              valueFrom:
+                secretKeyRef:
+                  name:
+                  key:  
             - name: MYSQL_PASSWORD
-              value: "rootpassword"    # Or your MySQL password
+              valueFrom:
+                secretKeyRef:
+                  name:
+                  key:         
+                  
+            #- name: MYSQL_DATABASE
+              #value: "mydatabase"      # these value must be match with value set in MySQL Dockerfile
+            #- name: MYSQL_USER
+              #value: "root"            # Or your MySQL user
+            #- name: MYSQL_PASSWORD
+              #value: "rootpassword"    # Or your MySQL password
+              
     replicas: 5
     selector:
       matchLabels:
