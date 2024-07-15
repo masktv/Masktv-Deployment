@@ -8,7 +8,7 @@ spec:
   ingressClassName: nginx
 #  defaultBackend:
     service:
-      name: masktv-service
+      name: masktv-app-service
       port:
         number: 80
 #  rules:
