@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: masktv-app-deployment
+  labels: 
+    app: masktv-app
 spec:
   template:
     metadata:
@@ -13,6 +15,12 @@ spec:
           image: # Use the image that we build 
           ports:
             - containerPort: 80
+              name: http
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 200m
+              memory: 100m
           env:
             - name: MYSQL_HOST
               value: "mysql-service"   # Use the service name of MySQL service
@@ -22,7 +30,7 @@ spec:
               value: "root"            # Or your MySQL user
             - name: MYSQL_PASSWORD
               value: "rootpassword"    # Or your MySQL password
-    replicas: 4
+    replicas: 5
     selector:
       matchLabels:
         app: masktv-app
