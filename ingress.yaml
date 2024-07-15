@@ -18,6 +18,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: masktv-service
+              name: masktv-app-service
               port:
                 number: 80
