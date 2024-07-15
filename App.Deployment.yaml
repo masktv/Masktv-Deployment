@@ -23,7 +23,7 @@ spec:
               memory: 100m
           env:
             - name: MYSQL_HOST
-              value: "mysql-service"   # Use the service name of MySQL service
+              value: "mastv-mysql-service"   # Use the service name of MySQL service
             - name: MYSQL_DATABASE
               value: "mydatabase"      # these value must be match with value set in MySQL Dockerfile
             - name: MYSQL_USER
