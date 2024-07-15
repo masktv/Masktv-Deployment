@@ -24,16 +24,39 @@ spec:
               
 #  if i store application file on s3 then i will have to attach volume to container with path  
 #  I have already enter env variable in docker file then will i have to also mention env variable here ??????          
-          env: # make sure that values are match with docker image values 
+          env:                               # make sure that values are match with docker image values 
             - name: MYSQL_ROOT_PASSWORD
-              value: myrootpassword
+              valueFrom:
+                secretKeyRef:
+                  name: database-secrets
+                  key: MYSQL_ROOT_PASSWORD
             - name: MYSQL_DATABASE
-              value: mydatabase
+              valueFrom:
+                secretKeyRef:
+                  name: database-secrets
+                  key: MYSQL_DATABASE
             - name: MYSQL_USER
-              value: myuser
+              valueFrom:
+                secretKeyRef:
+                  name: database-secrets
+                  key: MYSQL_USER
             - name: MYSQL_PASSWORD
-              value: mypassword  
-    replicas: 4
+              valueFrom:
+                secretKeyRef:
+                  name: database-secrets
+                  key: MYSQL_PASSWORD 
+
+                  
+            #- name: MYSQL_ROOT_PASSWORD
+              #value: myrootpassword
+            #- name: MYSQL_DATABASE
+              #value: mydatabase
+            #- name: MYSQL_USER
+              #value: myuser
+            #- name: MYSQL_PASSWORD
+              #value: mypassword
+              
+    replicas: 5
     selector:
       matchLabels:
         app: masktv-mysql
