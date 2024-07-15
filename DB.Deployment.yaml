@@ -2,11 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: masktv-mysql-deployment
-spec:
-  replicas: 4
-  selector:
-    matchLabels:
-      app: masktv-mysql
+  labels:
+    app: masktv-mysql
+spec:    
   template:
     metadata:
       labels:
@@ -17,6 +15,33 @@ spec:
           image: # mysql image that created by us  
           ports:
             - containerPort: 3306
+              name: mysql
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 200m
+              memory: 100m
+              
+#  if i store application file on s3 then i will have to attach volume to container with path  
+#  I have already enter env variable in docker file then will i have to also mention env variable here ??????          
+          env: # make sure that values are match with docker image values 
+            - name: MYSQL_ROOT_PASSWORD
+              value: myrootpassword
+            - name: MYSQL_DATABASE
+              value: mydatabase
+            - name: MYSQL_USER
+              value: myuser
+            - name: MYSQL_PASSWORD
+              value: mypassword  
+    replicas: 4
+    selector:
+      matchLabels:
+        app: masktv-mysql
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 2
+        maxUnavailable: 2
 
  #  if i store application file on s3 then i will have to attach volume to container with path  
  #  I have already enter env variable in docker file then will i have to also mention env variable here ???????
