@@ -31,6 +31,8 @@ RUN  rm /etc/apache2/sites-enabled/000-default.conf
 COPY ./pod.conf /etc/apache2/sites-enabled
 COPY ./domain.conf /etc/apache2/sites-enabled
 
+# Write cammand here to download public_html from s3 to /var/www/html
+
 # Allow PHP user to write files to HTML directory
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
