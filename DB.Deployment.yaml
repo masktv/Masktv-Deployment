@@ -23,7 +23,8 @@ spec:
               memory: 100m
               
 #  if i store application file on s3 then i will have to attach volume to container with path  
-#  I have already enter env variable in docker file then will i have to also mention env variable here ??????          
+#  I have already enter env variable in docker file then will i have to also mention env variable here ??????  
+# and i mentioned env variable in dockerfile but these are in readable formate. will it match with this ??????? 
           env:                               # make sure that values are match with docker image values 
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
