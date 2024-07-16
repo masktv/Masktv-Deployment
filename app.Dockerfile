@@ -28,8 +28,9 @@ RUN echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
 
 # Copy Apache site-setting configuration
 RUN  rm /etc/apache2/sites-enabled/000-default.conf
-COPY ./pod.conf /etc/apache2/sites-enabled
 COPY ./domain.conf /etc/apache2/sites-enabled
+COPY ./subdomain.conf /etc/apache2/sites-enabled
+COPY ./subdomain1.conf /etc/apache2/sites-enabled
 
 # Write cammand here to download public_html from s3 to /var/www/html
 
