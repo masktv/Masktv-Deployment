@@ -33,7 +33,7 @@ RUN echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
 #COPY ./subdomain1.conf /etc/apache2/sites-enabled
 
 # Write cammand here to download public_html from s3 to /var/www/html
-COPY ./public_html /var/www/html
+COPY ./public_html/* /var/www/html/
 
 # Allow PHP user to write files to HTML directory
 RUN chown -R www-data:www-data /var/www/html \
