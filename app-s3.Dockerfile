@@ -50,7 +50,8 @@ RUN aws s3 cp s3://application-automation/public_html/* /var/www/html --recursiv
 
 # Allow PHP user to write files to HTML directory
 RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
+    && chmod -R 755 /var/www/html \
+    &&  a2enmod rewrite
 
 # Expose port 80
 EXPOSE 80
