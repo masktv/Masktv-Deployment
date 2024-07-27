@@ -15,8 +15,10 @@ RUN apt-get update \
         php7.4-curl \
         php7.4-zip \
         php7.4-json \
+        php7.4-imagick \
         phpmyadmin \
         php7.4-cli \
+        php7.4-fpm \
         unzip \
         curl \
     && apt-get clean \
@@ -46,7 +48,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Download public_html from S3 to /var/www/html
-RUN aws s3 cp s3://application-automation/public_html/* /var/www/html --recursive
+RUN aws s3 cp s3://application-automation/public_html/ /var/www/html --recursive
 
 # Allow PHP user to write files to HTML directory
 RUN chown -R www-data:www-data /var/www/html \
