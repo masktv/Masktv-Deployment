@@ -26,7 +26,7 @@ spec:
               mountPath: /var/www/html       # varify once
           env:
             - name: MYSQL_HOST
-              value: "mastv-mysql-service"   # Service name of MySQL service
+              value: "masktv-mysql-service"   # Service name of MySQL service
                 
 # insert value from secrets.yaml
             - name: MYSQL_ROOT_PASSWORD
