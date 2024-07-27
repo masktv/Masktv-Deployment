@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: masktv-app-pv
+  labels:
+    app: masktv-app
+spec:
+  capacity:
+    storage: 80Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: aws-ebs
+  awsElasticBlockStore:
+    volumeID: <app-volume-id>
+    fsType: ext4
+  persistentVolumeReclaimPolicy: Recycle
