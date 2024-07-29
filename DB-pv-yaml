@@ -9,7 +9,7 @@ spec:
     storage: 8Gi
   accessModes:
     - ReadWriteMany
-  storageClassName: aws-ebs
+  storageClassName:
   awsElasticBlockStore:
     volumeID: <db-volume-id>
     fsType: ext4
