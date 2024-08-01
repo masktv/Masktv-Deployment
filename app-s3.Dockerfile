@@ -55,6 +55,13 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html \
     &&  a2enmod rewrite
 
+# set env to acess database from database container 
+ENV DB_HOST=172.17.0.3
+ENV DB_PORT=3306
+ENV DB_USER=atharv
+ENV DB_PASSWORD=atharv_password
+ENV DB_NAME=atharv_database
+
 # Expose port 80
 EXPOSE 80
 
