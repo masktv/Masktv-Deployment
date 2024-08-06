@@ -21,14 +21,15 @@ spec:
             requests:
               cpu: 200m
               memory: 100m
-
-          # .....................(EFS).........ADD HERE FOR PV MOUNT AND PV 
-          
+          volumeMounts:
+            - name: app-pv
+              mountPath: /var/lib/mysql   # CHECK ONCE 
           env:
             - name: MYSQL_HOST
-              value: "masktv-mysql-service"   # Service name of MySQL service
-                
-# insert value from secrets.yaml
+              value: "masktv-mysql-service"   # Service name of MySQL service      
+            
+            #........................................................................................
+            # insert value from secrets.yaml
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -57,7 +58,10 @@ spec:
             #- name: MYSQL_PASSWORD
               #value: "rootpassword"    # Or your MySQL password
               
-            
+      volumes:
+        - name: masktv-volume
+          persistentVolumeClaim:
+            claimName: masktv-db-pv
     replicas: 5
     selector:
       matchLabels:
