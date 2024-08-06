@@ -22,7 +22,7 @@ spec:
               cpu: 200m
               memory: 100m
           volumeMounts:
-            - name: app-pv
+            - name: masktv-app-volume
               mountPath: /var/www/html   # CHECK ONCE 
           env:
             - name: MYSQL_HOST
@@ -59,9 +59,9 @@ spec:
               #value: "rootpassword"    # Or your MySQL password
               
       volumes:
-        - name: masktv-volume
+        - name: masktv-app-volume
           persistentVolumeClaim:
-            claimName: masktv-app-pv
+            claimName: masktv-app-pvc
     replicas: 5
     selector:
       matchLabels:
