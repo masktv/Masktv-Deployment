@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   name: masktv-db-pv
   labels:
-    app=masktv
+    app: masktv-app
 spec:
   storageClassName: ""
   capacity:
