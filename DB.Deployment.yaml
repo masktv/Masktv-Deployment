@@ -21,12 +21,12 @@ spec:
             requests:
               cpu: 200m
               memory: 100m
-          volumeMounts:
-            - name: 
-              mountPath: /var/lib/mysql
-#  if i store application file on s3 then i will have to attach volume to container with path  
-#  I have already enter env variable in docker file then will i have to also mention env variable here ??????  
-# and i mentioned env variable in dockerfile but these are in readable formate. will it match with this ??????? 
+              
+          #volumeMounts:        ..............use efs for that
+            #- name: 
+              #mountPath: /var/lib/mysql
+
+               
           env:                               # make sure that values are match with docker image values 
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
@@ -58,9 +58,9 @@ spec:
               #value: myuser
             #- name: MYSQL_PASSWORD
               #value: mypassword
-      volumes:
-        - name:
-          persistentVolumeClaim:
+      #volumes:
+        #- name:
+          #persistentVolumeClaim:
           
     replicas: 5
     selector:
