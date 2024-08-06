@@ -23,7 +23,7 @@ spec:
               memory: 100m
           volumeMounts:
             - name: app-pv
-              mountPath: /var/lib/mysql   # CHECK ONCE 
+              mountPath: /var/www/html   # CHECK ONCE 
           env:
             - name: MYSQL_HOST
               value: "masktv-mysql-service"   # Service name of MySQL service      
@@ -61,7 +61,7 @@ spec:
       volumes:
         - name: masktv-volume
           persistentVolumeClaim:
-            claimName: masktv-db-pv
+            claimName: masktv-app-pv
     replicas: 5
     selector:
       matchLabels:
