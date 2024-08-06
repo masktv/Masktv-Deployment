@@ -22,7 +22,7 @@ spec:
               cpu: 200m
               memory: 100m
           volumeMounts:
-            - name: masktv-db-volume
+            - name: masktv-db-pv
               mountPath: /var/www/html  # CHECK ONCE              
 
                
@@ -57,7 +57,7 @@ spec:
             #- name: MYSQL_PASSWORD
               #value: mypassword
       volumes:
-        - name: masktv-db-volume
+        - name: masktv-db-pv
           persistentVolumeClaim:
           claimName: masktv-db-pvc
           
