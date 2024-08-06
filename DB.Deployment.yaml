@@ -23,7 +23,7 @@ spec:
               memory: 100m
           volumeMounts:
             - name: masktv-db-pv
-              mountPath: /var/www/html  # CHECK ONCE              
+              mountPath: /var/lib/mysql # CHECK ONCE              
 
                
           env:                               # make sure that values are match with docker image values 
