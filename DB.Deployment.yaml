@@ -21,8 +21,10 @@ spec:
             requests:
               cpu: 200m
               memory: 100m
-              
-            #     ...........................(EFS)........ ADD HERE FOR PERSISTANT VOLUME MOUNT AND VOLUME
+          volumeMounts:
+            - name: masktv-db-volume
+              mountPath: /var/www/html  # CHECK ONCE              
+
                
           env:                               # make sure that values are match with docker image values 
             - name: MYSQL_ROOT_PASSWORD
@@ -45,7 +47,6 @@ spec:
                 secretKeyRef:
                   name: database-secrets
                   key: MYSQL_PASSWORD 
-
                   
             #- name: MYSQL_ROOT_PASSWORD
               #value: myrootpassword
@@ -55,6 +56,10 @@ spec:
               #value: myuser
             #- name: MYSQL_PASSWORD
               #value: mypassword
+      volumes:
+        - name: masktv-db-volume
+          persistentVolumeClaim:
+          claimName: masktv-db-pvc
           
     replicas: 5
     selector:
