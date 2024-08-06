@@ -21,9 +21,9 @@ spec:
             requests:
               cpu: 200m
               memory: 100m
-          volumeMounts: 
-            - name: 
-              mountPath: /var/www/html       # varify once
+          #volumeMounts: 
+            #- name: 
+              #mountPath: /var/www/html      .......use rfs for that 
           env:
             - name: MYSQL_HOST
               value: "masktv-mysql-service"   # Service name of MySQL service
@@ -56,10 +56,10 @@ spec:
               #value: "root"            # Or your MySQL user
             #- name: MYSQL_PASSWORD
               #value: "rootpassword"    # Or your MySQL password
-      volumes:
-        - name:
-          persistentVolumeClaim:
-            claimName:
+      #volumes:
+        #- name:
+          #persistentVolumeClaim:
+            #claimName:
             
     replicas: 5
     selector:
