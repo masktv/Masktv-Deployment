@@ -1,16 +1,19 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: masktv-mysql-pv
-  labels:
-    app: masktv-mysql
+  name: db-pv
 spec:
+  storageClassName: ""
   capacity:
-    storage: 8Gi
+    storage: 2Gi
+  volumeMode: Filesystem
   accessModes:
     - ReadWriteMany
-  storageClassName:
-  awsElasticBlockStore:
-    volumeID: <db-volume-id>
-    fsType: ext4
   persistentVolumeReclaimPolicy: Recycle
+  local:
+    path: /mnt/db
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - {key: kubernetes.io/hostname, operator: In, values: [controlplane]}
