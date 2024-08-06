@@ -5,12 +5,17 @@ metadata:
   labels:
     app: masktv-app
 spec:
+  storageClassName: ""
   capacity:
-    storage: 80Gi
+    storage: 60Gi #.......SET ACCORDING TO APPLICATION SIZE.........
+  volumeMode: Filesystem
   accessModes:
-    - ReadWriteMany
-  storageClassName: aws-ebs
-  awsElasticBlockStore:
-    volumeID: <app-volume-id>
-    fsType: ext4
+    - ReadWriteMany    # so can multiple instance read and write data
   persistentVolumeReclaimPolicy: Recycle
+  local:
+    path: /mnt/app #...... MAKE DIRECTORY IN MNT
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - {key: kubernetes.io/hostname, operator: In, values: [controlplane]}
