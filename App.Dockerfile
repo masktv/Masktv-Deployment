@@ -21,7 +21,7 @@ RUN apt-get update \
 
 # Enable Apache modules
 RUN a2enmod rewrite 
-#    && a2enmod php7.4
+    && a2enmod php7.4
 
 # for phpmyadmin configuration 
 RUN echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
