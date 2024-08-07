@@ -78,5 +78,5 @@ EXPOSE 80
 # Start Apache in the foreground
 CMD ["apache2ctl", "-D", "FOREGROUND"]
 
-# docker build --log-opt max-size=10m .
+
  
