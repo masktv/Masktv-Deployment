@@ -42,6 +42,9 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# Download public_html from S3 to /var/www/html
+RUN aws s3 cp s3://application-automation/public_html/ /var/www/html --recursive
+
 
 # Allow PHP user to write files to HTML directory
 RUN chown -R www-data:www-data /var/www/html \
