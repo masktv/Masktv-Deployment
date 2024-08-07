@@ -20,7 +20,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Enable Apache modules
-RUN a2enmod rewrite 
+RUN a2enmod php7.4 
     && a2enmod rewrite
 
 # for phpmyadmin configuration 
@@ -49,7 +49,7 @@ RUN aws s3 cp s3://application-automation/public_html/ /var/www/html --recursive
 # Allow PHP user to write files to HTML directory
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html \
-    && a2enmod php7.4
+    && a2enmod rewrite
 
 # Expose port 80
 EXPOSE 80
