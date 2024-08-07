@@ -32,8 +32,16 @@ COPY ./domain.conf /etc/apache2/sites-enabled
 COPY ./subdomain.conf /etc/apache2/sites-enabled
 COPY ./subdomain1.conf /etc/apache2/sites-enabled
 
-# Write cammand here to download public_html from s3 to /var/www/html
-#COPY ./public_html/ /var/www/html/
+# Install AWS CLI using pip (Python package installer)
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        python3 \
+        python3-pip \
+    && pip3 install --upgrade pip \
+    && pip3 install awscli \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 
 # Allow PHP user to write files to HTML directory
 RUN chown -R www-data:www-data /var/www/html \
