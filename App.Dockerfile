@@ -20,7 +20,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Enable Apache modules
-RUN a2enmod php7.4 
+RUN a2enmod php7.4 \
     && a2enmod rewrite
 
 # for phpmyadmin configuration 
