@@ -13,7 +13,7 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Recycle
   local:
-    path: /mnt/efs-deployment/db
+    path: /mnt/deployment-efs/db
   nodeAffinity:
     required:
       nodeSelectorTerms:
