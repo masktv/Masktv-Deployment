@@ -10,8 +10,8 @@
 .......................................................
 run if we want to attach or mount efs to efs direcotory 
 # Create a mount point directory
-    mkdir -p /mnt/efs/app 
-    mkdir /mnt/efs/db
+    mkdir -p /mnt/deployment-efs/app 
+    mkdir /mnt/deployment-efs/db
 .......................................................
 
 # Replace the following with your EFS DNS name
