@@ -7,13 +7,13 @@ metadata:
 spec:
   storageClassName: ""
   capacity:
-    storage: 60Gi #.......SET ACCORDING TO APPLICATION SIZE.........
+    storage: 25Gi #.......SET ACCORDING TO APPLICATION SIZE.........
   volumeMode: Filesystem
   accessModes:
     - ReadWriteMany    # so can multiple instance read and write data
   persistentVolumeReclaimPolicy: Recycle
   local:
-    path: /mnt/app #...... MAKE DIRECTORY IN MNT
+    path: /mnt/deployment-efs/app #...... MAKE DIRECTORY IN MNT
   nodeAffinity:
     required:
       nodeSelectorTerms:
