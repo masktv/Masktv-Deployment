@@ -7,18 +7,18 @@
 # Install the Amazon EFS mount helper and NFS client
     apt-get install -y amazon-efs-utils nfs-common
 
-.......................................................
-run if we want to attach or mount efs to efs direcotory 
 # Create a mount point directory
-    mkdir -p /mnt/deployment-efs/app 
-    mkdir /mnt/deployment-efs/db
-.......................................................
+    mkdir -p /mnt/deployment-efs
 
 # Replace the following with your EFS DNS name
     EFS_DNS_NAME=fs-12345678.efs.us-west-2.amazonaws.com
 
 # Mount the EFS file system
-    mount -t efs $EFS_DNS_NAME:/ /mnt/efs
+    mount -t efs $EFS_DNS_NAME:/ /mnt/deployment-efs
+
+# Creating directory for APP DATA and DB DATA
+    mkdir /mnt/deployment-efs/app
+    mkdir /mnt/deployment-efs/data
 
 # Ensure EFS is mounted on reboot
     echo "$EFS_DNS_NAME:/ /mnt/efs efs defaults,_netdev 0 0" >> /etc/fstab
