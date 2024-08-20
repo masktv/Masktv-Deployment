@@ -8,6 +8,6 @@ spec:
   storageClassName: ""
   resources:
     requests:
-      storage: 20Gi #..SET ACCORDING TO APP SIZE
+      storage: 25Gi #..SET ACCORDING TO APP SIZE
   volumeMode: Filesystem
   volumeName: masktv-app-pv
