@@ -4,14 +4,14 @@
 # Update the package repository
     apt-get update -y
 
-# Install the Amazon EFS mount helper and NFS client
-    apt-get install -y amazon-efs-utils nfs-common
+# Install the NFS client
+  sudo apt install nfs-common
 
 # Create a mount point directory
     mkdir -p /mnt/deployment-efs
 
 # Replace the following with your EFS DNS name
-    EFS_DNS_NAME=fs-12345678.efs.us-west-2.amazonaws.com
+    EFS_DNS_NAME=fs-0ed66383c28dd390c.efs.ap-south-1.amazonaws.com
 
 # Mount the EFS file system
     mount -t efs $EFS_DNS_NAME:/ /mnt/deployment-efs
@@ -21,4 +21,4 @@
     mkdir /mnt/deployment-efs/data
 
 # Ensure EFS is mounted on reboot
-    echo "$EFS_DNS_NAME:/ /mnt/efs efs defaults,_netdev 0 0" >> /etc/fstab
+    echo "$EFS_DNS_NAME:/ /mnt/deployment-efs defaults,_netdev 0 0" >> /etc/fstab
