@@ -10,8 +10,8 @@ spec:
     storage: 2Gi
   volumeMode: Filesystem
   accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Recycle
+    - ReadWriteMany                                       .............check
+  persistentVolumeReclaimPolicy: Recycle                 ..........check
   local:
     path: /mnt/deployment-efs/db
   nodeAffinity:
