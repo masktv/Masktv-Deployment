@@ -5,9 +5,9 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: ""
+  storageClassName: ""  # Use a specific storage class or leave empty for default
   resources:
     requests:
-      storage: 25Gi #..SET ACCORDING TO APP SIZE
+      storage: 25Gi  # Set according to application size
   volumeMode: Filesystem
   volumeName: masktv-app-pv
