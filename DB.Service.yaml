@@ -4,9 +4,10 @@ metadata:
   name: masktv-mysql-service
 spec:
   selector:
-    app: masktv-mysql       # labell must be match with pod label of masktv deployment.
+    app: masktv-mysql  # Must match the label of the pods in the MySQL Deployment
   ports:
     - protocol: TCP
-      port: 3306     # Port on which MySQL listens inside the container
-
+      port: 3306        # Port on which the service will be exposed
+      targetPort: 3306  # Port on which MySQL listens inside the container
+  type: ClusterIP      # Default service type, change if external access is needed
 
