@@ -19,8 +19,10 @@ RUN apt-get update \
         php7.4-zip \
         php7.4-json \
         php7.4-cli \
-        php7.4-fpm \        
+        php7.4-fpm \
+        php7.4-imagick \
         phpmyadmin \
+        unzip \
         python3 \
         python3-pip \
     && pip3 install --upgrade pip \
