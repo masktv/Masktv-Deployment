@@ -5,9 +5,10 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: ""
+  storageClassName: ""  # Specify the storage class or leave empty for the default
   resources:
     requests:
-      storage: 2Gi #..SET ACCORDING TO DB SIZE
+      storage: 2Gi  # Set according to your database size
   volumeMode: Filesystem
   volumeName: masktv-db-pv
+
