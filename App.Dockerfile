@@ -18,6 +18,8 @@ RUN apt-get update \
         php7.4-curl \
         php7.4-zip \
         php7.4-json \
+        php7.4-cli \
+        php7.4-fpm \        
         phpmyadmin \
         python3 \
         python3-pip \
