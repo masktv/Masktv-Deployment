@@ -33,6 +33,9 @@ RUN a2enmod php7.4 \
 # Configure phpMyAdmin
 RUN echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
 
+# delete default site setting file
+RUN  rm /etc/apache2/sites-enabled/000-default.conf
+
 # Copy Apache site configuration files
 COPY ./domain.conf /etc/apache2/sites-enabled/
 COPY ./subdomain.conf /etc/apache2/sites-enabled/
