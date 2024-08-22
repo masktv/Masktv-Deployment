@@ -5,17 +5,21 @@ metadata:
   labels:
     app: masktv-app
 spec:
-  storageClassName: ""
+  storageClassName: ""  # Specify a storage class or leave empty for default
   capacity:
-    storage: 2Gi
+    storage: 2Gi        # Set according to your application's storage needs
   volumeMode: Filesystem
   accessModes:
-    - ReadWriteMany                                       .............check
-  persistentVolumeReclaimPolicy: Recycle                 ..........check
+    - ReadWriteMany     # Allows multiple Pods to read and write simultaneously
+  persistentVolumeReclaimPolicy: Recycle  # Set to Recycle or Retain based on needs
   local:
-    path: /mnt/deployment-efs/db
+    path: /mnt/deployment-efs/db  # Ensure this directory exists on the node
   nodeAffinity:
     required:
       nodeSelectorTerms:
       - matchExpressions:
-        - {key: kubernetes.io/hostname, operator: In, values: [controlplane]}
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+            - controlplane
+
