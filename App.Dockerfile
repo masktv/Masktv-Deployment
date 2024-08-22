@@ -42,7 +42,7 @@ COPY ./subdomain.conf /etc/apache2/sites-enabled/
 COPY ./subdomain1.conf /etc/apache2/sites-enabled/
 
 # Download public_html from S3 to /var/www/html
-RUN aws s3 cp s3://application-automation/public_html/ /var/www/html --recursive \
+RUN aws s3 cp s3://....bucket-name...../public_html/ /var/www/html --recursive \
     && chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
