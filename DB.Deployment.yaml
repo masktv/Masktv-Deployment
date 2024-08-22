@@ -4,7 +4,11 @@ metadata:
   name: masktv-mysql-deployment
   labels:
     app: masktv-mysql
-spec:    
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: masktv-mysql
   template:
     metadata:
       labels:
@@ -12,7 +16,7 @@ spec:
     spec:
       containers:
         - name: masktv-mysql-container
-          image: # mysql image that created by us  
+          image: # Replace with your MySQL image
           ports:
             - containerPort: 3306
               name: mysql
@@ -20,13 +24,11 @@ spec:
           resources:
             requests:
               cpu: 200m
-              memory: 100m
+              memory: 100Mi
           volumeMounts:
             - name: masktv-db-pv
-              mountPath: /var/lib/mysql # CHECK ONCE              
-
-               
-          env:                               # make sure that values are match with docker image values 
+              mountPath: /var/lib/mysql
+          env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -46,30 +48,16 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: database-secrets
-                  key: MYSQL_PASSWORD 
-                  
-            #- name: MYSQL_ROOT_PASSWORD
-              #value: myrootpassword
-            #- name: MYSQL_DATABASE
-              #value: mydatabase
-            #- name: MYSQL_USER
-              #value: myuser
-            #- name: MYSQL_PASSWORD
-              #value: mypassword
+                  key: MYSQL_PASSWORD
       volumes:
         - name: masktv-db-pv
           persistentVolumeClaim:
-          claimName: masktv-db-pvc
-          
-    replicas: 5
-    selector:
-      matchLabels:
-        app: masktv-mysql
-    strategy:
-      type: RollingUpdate
-      rollingUpdate:
-        maxSurge: 2
-        maxUnavailable: 2
+            claimName: masktv-db-pvc
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 2
+          maxUnavailable: 2
 
  
 
