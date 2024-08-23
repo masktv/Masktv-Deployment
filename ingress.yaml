@@ -6,7 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
-#  defaultBackend:
+  defaultBackend:
     service:
       name: masktv-app-service
       port:
@@ -15,6 +15,7 @@ spec:
     - host: # dns of loadbalancer "........."
       http:
         paths:
+        - path: /
           pathType: Prefix
           backend:
             service:
