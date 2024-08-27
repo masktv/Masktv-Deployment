@@ -1,0 +1,38 @@
+#!/bin/bash
+sudo -i
+apt-get update -y
+apt-get upgrade -y
+
+# Install necessary packages
+apt-get install -y nfs-common 
+
+# Allow NFS and necessary port
+ufw allow 22/tcp
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw allow 2049/tcp
+ufw allow 3306/tcp
+
+# Enable and configure ufw
+ufw enable 
+
+# Create mount directory
+mkdir -p /mnt/deployment-efs
+mkdir /mnt/deployment-efs/app
+mkdir /mnt/deployment-efs/db 
+
+# Define EFS File System ID and mount point
+EFS_ID=.....................
+REGION=.....................
+
+# Get EFS DNS name
+EFS_DNS_NAME="${EFS_ID}.efs.${REGION}.amazonaws.com"
+
+# Mount EFS
+mount -t nfs ${EFS_DNS_NAME}:/ /mnt/deployment-efs
+
+# Optionally, add entry to /etc/fstab to ensure it's mounted on reboot
+echo "${EFS_DNS_NAME}:/ /mnt/deployment-efs nfs defaults,_netdev 0 0" >> /etc/fstab
+
+# Mount all filesystems mentioned in /etc/fstab
+mount -a
