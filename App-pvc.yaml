@@ -10,4 +10,4 @@ spec:
     requests:
       storage: 25Gi  # Set according to application size
   volumeMode: Filesystem
-  volumeName: masktv-app-pv
+  volumeName: masktv-app-pv  # To Schedule this pvc on app pv [masktv-app-pv]
