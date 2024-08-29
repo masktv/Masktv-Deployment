@@ -10,5 +10,5 @@ spec:
     requests:
       storage: 2Gi  # Set according to your database size
   volumeMode: Filesystem
-  volumeName: masktv-db-pv
+  volumeName: masktv-db-pv   # To Schedule this pvc on db pv [masktv-dp-pv] 
 
