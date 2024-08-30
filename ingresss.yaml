@@ -5,7 +5,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: mginx
+  ingressClassName: nginx
   defaultBackend:
     service:
       name: masktv-app-service
