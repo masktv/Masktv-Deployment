@@ -24,6 +24,8 @@ Instance type : c5large  Family: [aws linux]
     1) git 
     2) docker 
     3) Jenkins
+
+  login to dockerhub
     
   Packages :
     1) kubectl
@@ -34,7 +36,7 @@ Instance type : c5large  Family: [aws linux]
   Configure kubernetes user to perform kubernetes deployment task
     configure with aws configure cammand
 
-  configure cluster on cluster  
+  Configure cluster on cluster  
     using kubeconfig update cammand 
 
   Deploy ingress controller And service 
