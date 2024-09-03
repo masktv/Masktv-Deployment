@@ -5,7 +5,7 @@ metadata:
   labels: 
     app: masktv-app
 spec:
-  replicas: 5
+  replicas: 10
   selector:
     matchLabels:
       app: masktv-app
