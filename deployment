@@ -15,7 +15,7 @@ TEMPLATE CONFIGURATION
 ...............................
 CLUSTER SETUP :-
   Create cluster With template
-  Create Acess entry by kubernetes user And type --> standard, policy scope --> AmazoneEKSadminPolicy.
+  Create Acess entry by kubernetes user And type --> standard, policy scope --> AmazoneEKSadminPolicy.  
   
 ...............................
 SERVER SETUP :- [jenkines-server]
@@ -34,7 +34,7 @@ Instance type : c5large  Family: [aws linux]
     Role Permission: AdminFullAccess
 
   Configure kubernetes user to perform kubernetes deployment task
-    configure with aws configure cammand
+    configure user with aws configure cammand. [mentioun same user that access entry have created in kubernetes ckuster ]
 
   Configure cluster on cluster  
     using kubeconfig update cammand 
