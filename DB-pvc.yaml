@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: masktv-db-pvc
+  name: masktv-mysql-pvc
 spec:
   accessModes:
     - ReadWriteMany
@@ -10,5 +10,5 @@ spec:
     requests:
       storage: 2Gi  # Set according to your database size
   volumeMode: Filesystem
-  volumeName: masktv-db-pv   # To Schedule this pvc on db pv [masktv-dp-pv] 
+  volumeName: masktv-mysql-pv   # To Schedule this pvc on db pv [masktv-dp-pv] 
 
