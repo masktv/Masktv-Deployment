@@ -45,10 +45,10 @@ COPY ./domain.conf /etc/apache2/sites-enabled/
 COPY ./subdomain.conf /etc/apache2/sites-enabled/
 COPY ./subdomain1.conf /etc/apache2/sites-enabled/
 
-# settingv up credential to download data from s3
-# ENV AWS_ACCESS_KEY_ID= ..........access_key
-# ENV AWS_SECRET_ACCESS_KEY= ........secret_access_key
-# ENV AWS_DEFAULT_REGION= .........region
+# setting up credential to download data from s3
+ENV AWS_ACCESS_KEY_ID= ..........access_key
+ENV AWS_SECRET_ACCESS_KEY= ........secret_access_key
+ENV AWS_DEFAULT_REGION= .........region
 
 # Download public_html from S3 to /var/www/html
 RUN aws s3 cp s3://....bucket-name...../public_html/ /var/www/html --recursive \
