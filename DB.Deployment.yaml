@@ -26,7 +26,7 @@ spec:
               cpu: 200m
               memory: 100Mi
           volumeMounts:
-            - name: masktv-db-pv
+            - name: masktv-mysql-pv
               mountPath: /var/lib/mysql
           env:
             - name: MYSQL_ROOT_PASSWORD
@@ -50,9 +50,9 @@ spec:
                   name: database-secrets
                   key: MYSQL_PASSWORD
       volumes:
-        - name: masktv-db-pv
+        - name: masktv-mysql-pv
           persistentVolumeClaim:
-            claimName: masktv-db-pvc
+            claimName: masktv-mysql-pvc
       strategy:
         type: RollingUpdate
         rollingUpdate:
