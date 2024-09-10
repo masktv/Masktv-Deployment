@@ -36,3 +36,4 @@ pipeline {
     }
   }
 }
+#configure cluster so can deployment perform on cluster Node
