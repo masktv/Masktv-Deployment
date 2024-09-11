@@ -13,7 +13,7 @@ spec:
         number: 80
         
   rules:
-    - host: #subdomain.example.com
+    - host: masktvott.com
       http:
         paths:
           - path: /
@@ -24,7 +24,7 @@ spec:
                 port:
                   number: 80
 
-    - host: #subdomain.example.com
+    - host: web.masktvott.com
       http:
         paths:
           - path: /
@@ -35,7 +35,7 @@ spec:
                 port:
                   number: 80
                   
-    - host: #example.com
+    - host: admin.masktvott.com
       http:
         paths:
           - path: /
