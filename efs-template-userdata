@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo -i
+
 apt-get update -y
 apt-get upgrade -y
 
@@ -14,16 +14,15 @@ ufw allow 2049/tcp
 ufw allow 3306/tcp
 
 # Enable and configure ufw
-ufw enable 
+ufw --force enable 
 
 # Create mount directory
-mkdir -p /mnt/deployment-efs
-mkdir /mnt/deployment-efs/app
-mkdir /mnt/deployment-efs/db 
+mkdir -p /mnt/deployment-efs/app
+mkdir -p /mnt/deployment-efs/db
 
 # Define EFS File System ID and mount point
-EFS_ID=fs-097079c98b2121969 #.....................
-REGION=ap-south-1 #.....................
+EFS_ID=fs-097079c98b2121969
+REGION=ap-south-1
 
 # Get EFS DNS name
 EFS_DNS_NAME="${EFS_ID}.efs.${REGION}.amazonaws.com"
