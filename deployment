@@ -7,6 +7,7 @@ EFS
 TEMPLATE CONFIGURATION 
   TO ATTACH EFS AUTOMATICALLY TO NODE CREATED THROUGH LOAD AND INSTALL, ALLOW NECCESORY PORT ON FIREWALL. 
     FOR TEMPLATE :- {DEPLOYMENT-CONFIG IN TEMPLATE}
+        steps to create template = create instance -> create image -> create template from instance
     - Use instance type: c5xlarge
     - Security-Group
     - Key-Pair
