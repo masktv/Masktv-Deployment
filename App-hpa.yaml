@@ -7,7 +7,7 @@ spec:
   scaleTargetRef:
     apiVersion: app/v1
     kind: Deployment
-    name: masktv-app-deploymen
+    name: masktv-app-deployment
   minReplicas: 10
   maxReplicas: 20
   metrics:
