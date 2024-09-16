@@ -59,8 +59,8 @@ spec:
         - name: masktv-app-pv
           persistentVolumeClaim:
             claimName: masktv-app-pvc
-    strategy: 
-      type: RollingUpdate
-      rollingUpdate: 
-        maxSurge: 2
-        maxUnavailable: 2
+  strategy: 
+    type: RollingUpdate
+    rollingUpdate: 
+      maxSurge: 2
+      maxUnavailable: 2
