@@ -1,19 +1,18 @@
-
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: masktv-mysql-hpa
 spec:
   scaleTargetRef:
-    apiVersion: apps/v1
+    apiVersion: app/v1
     kind: Deployment
-    name: masktv-mysql-deployment
+    name: masktv-mysql-deploymen
   minReplicas: 10
   maxReplicas: 20
   metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: 50
+  - type: Resource
+    resource: 
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
