@@ -5,7 +5,7 @@ metadata:
   labels:
     app: masktv-mysql
 spec:
-  replicas: 10
+  replicas: 5
   selector:
     matchLabels:
       app: masktv-mysql
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: masktv-mysql-container
-          image: # Replace with your MySQL image
+          image: masktv:db
           ports:
             - containerPort: 3306
               name: mysql
@@ -53,11 +53,10 @@ spec:
         - name: masktv-mysql-pv
           persistentVolumeClaim:
             claimName: masktv-mysql-pvc
-      strategy:
-        type: RollingUpdate
-        rollingUpdate:
-          maxSurge: 2
-          maxUnavailable: 2
-
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 2
  
 
