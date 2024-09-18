@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: masktv-mysql-statefulset
+  labels:
+    app: masktv-mysql
+spec:
+  serviceName: "masktv-mysql"
+  replicas: 2
+  selector:
+    matchLabels:
+      app: masktv-mysql
+  template:
+    metadata:
+      labels:
+        app: masktv-mysql
+    spec:
+      containers:
+        - name: masktv-mysql-container
+          image: mysql:latest
+          ports:
+            - containerPort: 3306
+              name: mysql
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512Mi
+          volumeMounts:
+            - name: masktv-mysql-pv
+              mountPath: /var/lib/mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: database-secrets
+                  key: MYSQL_ROOT_PASSWORD
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: database-secrets
+                  key: MYSQL_DATABASE
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: database-secrets
+                  key: MYSQL_USER
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: database-secrets
+                  key: MYSQL_PASSWORD
+      volumes:
+        - name: masktv-mysql-pv
+          persistentVolumeClaim:
+            claimName: masktv-mysql-pvc
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0  # State can be managed by partitioning
