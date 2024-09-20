@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: phpmyadmin
+  name: masktv-phpmyadmin-deployment
   labels:
     app: phpmyadmin
 spec:
@@ -15,19 +15,22 @@ spec:
         app: phpmyadmin
     spec:
       containers:
-        - name: phpmyadmin
+        - name: masktv-phpmyadmin-container
           image: phpmyadmin:latest
           ports:
-            - containerPort: 80
+            - containerPort: 8080
           env:
-            - name: PMA_HOST
-              value: mysql-service
-            - name: PMA_PORT
+            - name: MYSQL_HOST
+              value: "masktv-mysql-service"
+            - name: MYSQL_PORT
               value: "3306"
-            - name: DB_USER
-              value: root
-            - name: MYSQL_ROOT_PASSWORD
+            - name: MYSQL_USER
               valueFrom:
                 secretKeyRef:
-                  name: mysql-secret
-                  key: password
+                  name: database-secrets
+                  key: MYSQL_USER
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: database-secrets
+                  key: MYSQL_PASSWORD
