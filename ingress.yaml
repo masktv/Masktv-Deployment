@@ -45,3 +45,14 @@ spec:
                 name: masktv-app-service
                 port:
                   number: 80
+
+    - host: phpmyadmin.masktvott.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: masktv-phpmyadmin-service
+                port:
+                  number: 8080  
