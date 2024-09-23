@@ -8,6 +8,6 @@ spec:
   storageClassName: ""  # Use a specific storage class or leave empty for default
   resources:
     requests:
-      storage: 25Gi  # Set according to application size
+      storage: 50Gi  # Set according to application size
   volumeMode: Filesystem
   volumeName: masktv-app-pv  # To Schedule this pvc on app pv [masktv-app-pv]
