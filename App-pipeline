@@ -25,12 +25,13 @@ pipeline {
     stage('Deploy to Kubernetes') {
       steps {
         script {
-          sh 'kubectl apply -f app.pv'
-          sh 'kubectl apply -f app.pvc'
-          sh 'kubectl apply -f app.deployment'
-          sh 'kubectl apply -f app.service'
+          sh 'kubectl apply -f secret.yaml'
+          sh 'kubectl apply -f app-pv.yaml'
+          sh 'kubectl apply -f app-pvc.yaml'
+          sh 'kubectl apply -f app-deployment.yaml'
+          sh 'kubectl apply -f app-service.yaml'
+          sh 'kubectl apply -f app-hpa.yaml'
           sh 'kubectl apply -f ingress.yaml'
-          sh 'kubectl apply -f app.hpa'
         }
       }
     }
