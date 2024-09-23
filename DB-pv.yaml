@@ -11,7 +11,7 @@ spec:
   volumeMode: Filesystem
   accessModes:
     - ReadWriteMany     # Allows multiple Pods to read and write simultaneously
-  persistentVolumeReclaimPolicy: Recycle  # Set to Recycle or Retain based on needs
+  persistentVolumeReclaimPolicy: Retain  # Set to Recycle or Retain based on needs
   local:
     path: /mnt/deployment-efs/db  # Ensure this directory exists on the node
   nodeAffinity:
