@@ -18,8 +18,7 @@ ufw allow 10250/tcp
 ufw --force enable 
 
 # Create mount directory
-mkdir -p /mnt/deployment-efs/app
-mkdir -p /mnt/deployment-efs/db
+mkdir /mnt/deployment-efs
 
 # Define EFS File System ID and mount point
 EFS_ID=fs-09040722c4081b081
@@ -33,6 +32,10 @@ mount -t nfs ${EFS_DNS_NAME}:/ /mnt/deployment-efs
 
 # Optionally, add entry to /etc/fstab to ensure it's mounted on reboot
 echo "${EFS_DNS_NAME}:/ /mnt/deployment-efs nfs defaults,_netdev 0 0" >> /etc/fstab
+
+# Create directory to store Database and Application file
+mkdir /mnt/deployment-efs/app
+mkdir /mnt/deployment-efs/db
 
 # Mount all filesystems mentioned in /etc/fstab
 mount -a
