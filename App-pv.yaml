@@ -8,7 +8,7 @@ metadata:
 spec:
   storageClassName: "" # Use a specific storage class or leave empty for default
   capacity:
-    storage: 25Gi  # Set according to application size
+    storage: 50Gi  # Set according to application size
   volumeMode: Filesystem
   accessModes:
     - ReadWriteMany  # Allows multiple Pods to read and write simultaneously
