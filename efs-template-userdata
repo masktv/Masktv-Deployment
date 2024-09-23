@@ -12,6 +12,7 @@ ufw allow 80/tcp
 ufw allow 443/tcp
 ufw allow 2049/tcp
 ufw allow 3306/tcp
+ufw allow 10250/tcp 
 
 # Enable and configure ufw
 ufw --force enable 
