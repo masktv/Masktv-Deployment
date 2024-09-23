@@ -21,7 +21,6 @@ RUN apt-get update \
         php7.4-cli \
         php7.4-fpm \
         php7.4-imagick \
-        phpmyadmin \
         unzip \
         python3 \
         python3-pip \
@@ -33,9 +32,6 @@ RUN apt-get update \
 # Enable Apache modules
 RUN a2enmod php7.4 \
     && a2enmod rewrite
-
-# Configure phpMyAdmin
-RUN echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
 
 # delete default site setting file
 RUN  rm /etc/apache2/sites-enabled/000-default.conf
