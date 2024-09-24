@@ -17,6 +17,9 @@ ufw allow 10250/tcp
 # Enable and configure ufw
 ufw --force enable 
 
+# Set Hostname 
+hostnamectl set-hostname Masktv-OTT 
+
 # Create mount directory
 mkdir /mnt/deployment-efs
 
