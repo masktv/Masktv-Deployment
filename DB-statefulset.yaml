@@ -5,7 +5,7 @@ metadata:
   labels:
     app: masktv-mysql
 spec:
-  serviceName: "masktv-mysql"
+  serviceName: "masktv-mysql-service"
   replicas: 2
   selector:
     matchLabels:
