@@ -5,10 +5,10 @@ FROM mysql:latest
 
 # Environment variables
 # use env value in decode formate
-ENV MYSQL_ROOT_PASSWORD= # ...............
-ENV MYSQL_DATABASE= # ...............
-ENV MYSQL_USER= # ................
-ENV MYSQL_PASSWORD= # ...............
+ENV MYSQL_ROOT_PASSWORD=
+ENV MYSQL_DATABASE=
+ENV MYSQL_USER=
+ENV MYSQL_PASSWORD=
 
 # Copy SQL script to initialize database
 COPY ./newdb.sql /docker-entrypoint-initdb.d/
