@@ -46,7 +46,7 @@ spec:
                 port:
                   number: 80
 
-    - host: phpmyadmin.masktvott.com
+    - host: phpmyadmin.masktvott.com        --> ingress service loadbalancer endpoint --> cdn endpoint --> domain 
       http:
         paths:
           - path: /
