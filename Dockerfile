@@ -27,6 +27,8 @@ RUN apt-get update \
     && pip3 install awscli \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+    
+COPY ./html /var/www/html
 
 # Enable Apache modules
 RUN a2enmod php7.4 \
