@@ -16,5 +16,6 @@ spec:
       containers:
       - name: app-container
         image: masktv/masktv:app
+        imagePullPolicy: Always 
         ports:
         - containerPort: 80
