@@ -53,7 +53,7 @@ spec:
                 secretKeyRef:
                   name: database-secrets
                   key: MYSQL_PASSWORD
-      imagePullSecrets:
+      imagePullSecrets: # if dockerhub registry is private
         - name: # Specify the image pull secret name if required
       volumes:
         - name: masktv-app-pv
