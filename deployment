@@ -65,7 +65,7 @@ Necessory plugins on jenkines server
   docker plugin
 
 For Automation project we will have to create 1 job and 1 or 2 pipeline.
-  job :- Make one job for that Trigger Remotely using script When any change is performed in s3 bucket 
+
   pipeline 1st :- kubernetes cluster configure, clone the repo from github, build the Dokcker image from db.dockerfile, docker push image on dockerhub, then deploy kubernetes secret.yaml, and deploy db.pv, db.pvc, db.deployment and db.service, db.hpa. 
   pipeline 2nd ;- kubernetes cluster configure, clone the repo from github, build the Dokcker image from app.dockerfile, docker push image on dockerhub, then deploy app.pv, app.pvc, app.deployment and app.service, ingress rule, app.hpa.
 
