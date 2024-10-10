@@ -5,7 +5,7 @@ metadata:
   labels: 
     app: masktv-app
 spec:
-  replicas: 5
+  replicas: 2
   selector:
     matchLabels:
       app: masktv-app
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: masktv-app-container
-          image: # Use the image that we build
+          image: masktv/masktv:app-new
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -54,8 +54,8 @@ spec:
                 secretKeyRef:
                   name: database-secrets
                   key: MYSQL_PASSWORD
-      imagePullSecrets: # if dockerhub registry is private
-        - name: # Specify the image pull secret name if required
+      #imagePullSecrets: # if dockerhub registry is private
+        #- name: # Specify the image pull secret name if required
       volumes:
         - name: masktv-app-pv
           persistentVolumeClaim:
