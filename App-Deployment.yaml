@@ -5,7 +5,7 @@ metadata:
   labels: 
     app: masktv-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: masktv-app
@@ -31,7 +31,7 @@ spec:
               mountPath: /var/www/html   # CHECK ONCE 
           env:
             - name: MYSQL_HOST
-              value: "masktv-mysql-service"   # Service name of MySQL service
+              value: "http://my-service.my-namespace.svc.cluster.local"   # Service name of MySQL service
             - name: MYSQL_PORT
               value: "3306"
             - name: MYSQL_ROOT_PASSWORD
