@@ -9,7 +9,7 @@ spec:
     apiVersion: apps/v1
     kind: StatefulSet
     name: masktv-mysql-statefulset
-  minReplicas: 10
+  minReplicas: 5
   maxReplicas: 20
   metrics:
     - type: Resource
