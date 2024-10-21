@@ -87,9 +87,9 @@ spec:
   - metadata:
       name: masktv-mysql-pv
     spec:
-      volumeMode: Filesystem
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: 
+      accessModes: 
+        - ReadWriteOnce
+      storageClassName: sts-efs-sclass
       resources:
         requests:
           storage: 2Gi
