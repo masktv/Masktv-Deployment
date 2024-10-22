@@ -87,14 +87,7 @@ spec:
   - metadata:
       name: masktv-mysql-pv
     spec:
-      accessModes: 
-        - ReadWriteOnce
-      storageClassName: sts-efs-sclass
+      accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
           storage: 2Gi
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 2
-      maxUnavailable: 2
