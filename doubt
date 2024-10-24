@@ -1,2 +1,4 @@
-1] What Volume access mode i have to use? what is ROM RWO ROM ?
-2] 
+1] kuberbetes app pod not connect with database pod { php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution }
+2] Network not running in pod { apt-get update -------resolve issue }
+3} How to route write req on master pod { Master-Slave }
+4} Launch node from Launch template 
