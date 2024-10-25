@@ -17,28 +17,29 @@ ufw allow 10250/tcp
 # Enable and configure ufw
 ufw --force enable 
 
-# Set Hostname 
-hostnamectl set-hostname Masktv-OTT 
+# .......................Create mount directory..................
+
+mkdir /mnt/APP_FILE
+mkdir /mnt/MYSQL_BACKUP
 
 # Create mount directory
-mkdir /mnt/deployment-efs
-
-# Define EFS File System ID and mount point
-EFS_ID=fs-09040722c4081b081
 REGION=ap-south-1
 
-# Get EFS DNS name
-EFS_DNS_NAME="${EFS_ID}.efs.${REGION}.amazonaws.com"
+# .......................EFS DNS name............................
 
-# Mount EFS
-mount -t nfs ${EFS_DNS_NAME}:/ /mnt/deployment-efs
+EFS_DNS_NAME_APP="Mention-EFS_ID_APP.efs.${REGION}.amazonaws.com"
+EFS_DNS_NAME_MYSQL="Mention-EFS_ID_MYSQL-BACKUP.efs.${REGION}.amazonaws.com"
 
-# Optionally, add entry to /etc/fstab to ensure it's mounted on reboot
-echo "${EFS_DNS_NAME}:/ /mnt/deployment-efs nfs defaults,_netdev 0 0" >> /etc/fstab
+# .......................Mount EFS..............................
 
-# Create directory to store Database and Application file
-mkdir /mnt/deployment-efs/app
-mkdir /mnt/deployment-efs/db
+mount -t nfs ${EFS_DNS_NAME_APP}:/ /mnt/APP_FILE
+mount -t nfs ${EFS_DNS_NAME_MYSQL}:/ /mnt/MYSQL_BACKUP
 
-# Mount all filesystems mentioned in /etc/fstab
+# ............add entry to /etc/fstab to ensure it's mounted on reboot.......................
+
+echo "${EFS_DNS_NAME_APP}:/ /mnt/APP_FILE nfs defaults,_netdev 0 0" >> /etc/fstab
+echo "${EFS_DNS_NAME_MYSQL}:/ /mnt/MYSQL_BACKUP nfs defaults,_netdev 0 0" >> /etc/fstab
+
+# ......................Refresh Mount-path......................
+
 mount -a
