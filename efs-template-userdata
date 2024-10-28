@@ -28,17 +28,17 @@ REGION=ap-south-1
 # .......................EFS DNS name............................
 
 EFS_DNS_NAME_APP="Mention-EFS_ID_APP.efs.${REGION}.amazonaws.com"
-EFS_DNS_NAME_MYSQL="Mention-EFS_ID_MYSQL-BACKUP.efs.${REGION}.amazonaws.com"
+EFS_DNS_NAME_MYSQL_BACKUP="Mention-EFS_ID_MYSQL_BACKUP.efs.${REGION}.amazonaws.com"
 
 # .......................Mount EFS..............................
 
 mount -t nfs ${EFS_DNS_NAME_APP}:/ /mnt/APP_FILE
-mount -t nfs ${EFS_DNS_NAME_MYSQL}:/ /mnt/MYSQL_BACKUP
+mount -t nfs ${EFS_DNS_NAME_MYSQL_BACKUP}:/ /mnt/MYSQL_BACKUP
 
 # ............add entry to /etc/fstab to ensure it's mounted on reboot.......................
 
 echo "${EFS_DNS_NAME_APP}:/ /mnt/APP_FILE nfs defaults,_netdev 0 0" >> /etc/fstab
-echo "${EFS_DNS_NAME_MYSQL}:/ /mnt/MYSQL_BACKUP nfs defaults,_netdev 0 0" >> /etc/fstab
+echo "${EFS_DNS_NAME_MYSQL_BACKUP}:/ /mnt/MYSQL_BACKUP nfs defaults,_netdev 0 0" >> /etc/fstab
 
 # ......................Refresh Mount-path......................
 
