@@ -2,6 +2,6 @@
 2] Network not running in pod { apt-get update -------resolve issue }
 3} How to route write req on master pod { Master-Slave } and read request on slave in database replication 
 4} Launch node from Launch template 
-5} MYSQL BACKUP :-   kubectl exec -it master pod -- bin/bash -c mysql dump .............  > /mnt/db.sql -----> volm test-volm mount on hostpath /mnt ----> volm test-volm mount on /mnt in container -----> on host path, efs attach on /mnt.
-    {db.sql--->/mnt, mnt--> local machine /mnt path, local machine mnt ---> efs }
+5} MYSQL BACKUP :-   kubectl exec -it master pod -- bin/bash -c mysql dump .............  > /mnt/db.sql (path in POD) -----> volm test-volm mount on hostpath /mnt (attach volm {test-volm on path /mnt on host machine}) ----> volm test-volm mount on /mnt in container -----> on host path, efs attach on /mnt.
+    {PATH HOW TO STORE BACK_UP OF DATABASE IN EFS :- db.sql--->/mnt, mnt--> local machine /mnt path, local machine mnt ---> efs}
 6} 
