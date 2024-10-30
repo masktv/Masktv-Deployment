@@ -28,7 +28,9 @@ spec:
               memory: 100Mi
           volumeMounts:
             - name: masktv-app-pv
-              mountPath: /var/www/html   # CHECK ONCE 
+              mountPath: /var/www/html 
+            - name: app-log-pv
+              mountPath: /var/log/apache2
           env:
             - name: MYSQL_HOST
               value:    # Service name of MySQL service
@@ -56,10 +58,15 @@ spec:
                   key: MYSQL_PASSWORD
       imagePullSecrets: # if dockerhub registry is private
         - name: # Specify the image pull secret name if required
+        # volume for public html pv
       volumes:
         - name: masktv-app-pv
           persistentVolumeClaim:
             claimName: masktv-app-pvc
+        # volume for log pv
+        - name: app-log-pv
+          persistentVolumeClaim: 
+            claimName: app-log-pvc
   strategy: 
     type: RollingUpdate
     rollingUpdate: 
