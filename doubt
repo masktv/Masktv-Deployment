@@ -5,3 +5,8 @@
 5} MYSQL BACKUP :-   kubectl exec -it master pod -- bin/bash -c mysql dump .............  > /mnt/db.sql (path in POD) -----> volm test-volm mount on hostpath /mnt (attach volm {test-volm on path /mnt on host machine}) ----> volm test-volm mount on /mnt in container -----> on host path, efs attach on /mnt.
     {PATH HOW TO STORE BACK_UP OF DATABASE IN EFS :- db.sql--->/mnt, mnt--> local machine /mnt path, local machine mnt ---> efs}
 6} Node Affinity in pv for multiple node created automatically due to load.
+
+
+storageclass --> storage class not creating [efs csi error]
+pv configuration --> node affinity term 
+connection issue in appc pod and database pod --> php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution
