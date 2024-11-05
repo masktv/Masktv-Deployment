@@ -19,36 +19,33 @@ ufw --force enable
 
 # .......................Create mount directory..................
 
-mkdir /mnt/APP
-mkdir /mnt/MYSQL
+mkdir /mnt/EFS
+
 
 # Create mount directory
 REGION=ap-south-1
 
 # .......................EFS DNS name............................
 
-EFS_DNS_NAME_APP="Mention-EFS_ID_APP.efs.${REGION}.amazonaws.com"
-EFS_DNS_NAME_MYSQL="Mention-EFS_ID_MYSQL.efs.${REGION}.amazonaws.com"
+EFS_DNS_NAME="Mention-EFS_ID.efs.${REGION}.amazonaws.com"
 
 # .......................Mount EFS..............................
 
-mount -t nfs ${EFS_DNS_NAME_APP}:/ /mnt/APP
-mount -t nfs ${EFS_DNS_NAME_MYSQL}:/ /mnt/MYSQL
+mount -t nfs ${EFS_DNS_NAME}:/ /mnt/EFS
 
 # ............add entry to /etc/fstab to ensure it's mounted on reboot.......................
 
-echo "${EFS_DNS_NAME_APP}:/ /mnt/APP nfs defaults,_netdev 0 0" >> /etc/fstab
-echo "${EFS_DNS_NAME_MYSQL}:/ /mnt/MYSQL nfs defaults,_netdev 0 0" >> /etc/fstab
+echo "${EFS_DNS_NAME}:/ /mnt/EFS nfs defaults,_netdev 0 0" >> /etc/fstab
 
 # ......................Refresh Mount-path......................
 
 mount -a
 
-# ......Make Directory for APP file , Log file ......
+mkdir /mnt/EFS/APP
+mkdir /mnt/EFS/MYSQL
 
-mkdir /mnt/APP/public_html
-mkdir /mnt/APP/Log
+mkdir /mnt/EFS/app/public_html
+mkdir /mnt/EFS/app/log
 
-# ...... Database file , Log file ......
-mkdir /mnt/MYSQL/Database
-mkdir /mnt/MYSQL/Log
+mkdir /mnt/EFS/db/Log
+mkdir /mnt/EFS/db/database
