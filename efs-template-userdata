@@ -41,8 +41,8 @@ echo "${EFS_DNS_NAME}:/ /mnt/EFS nfs defaults,_netdev 0 0" >> /etc/fstab
 
 mount -a
 
-mkdir /mnt/EFS/APP
-mkdir /mnt/EFS/MYSQL
+mkdir /mnt/EFS/app
+mkdir /mnt/EFS/db
 
 mkdir /mnt/EFS/app/public_html
 mkdir /mnt/EFS/app/log
