@@ -47,10 +47,16 @@ ENV AWS_SECRET_ACCESS_KEY= ........secret_access_key
 ENV AWS_DEFAULT_REGION= .........region
 
 # Download public_html from S3 to /var/www/html
-RUN aws s3 cp s3://....bucket-name...../public_html/ /var/www/html --recursive \
+RUN aws s3 cp s3://....bucket-name...../public_html/ /var/www/html --recursive \     
     && chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
-
+    
+# in case of tar download and extract 
+RUN aws s3 cp s3://....bucket-name....../file.tar.gz . \
+    && tar -xzf file.tar.gz -C /var/www/ \
+    && rm file.tar.gz \
+    && chown -R www-data:www-data /var/www/html/ \
+    && chmod -R 755 /var/www/html/
 # Expose port 80
 EXPOSE 80
 
