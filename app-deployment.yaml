@@ -35,7 +35,7 @@ spec:
             - name: DataBaseHost
               valueFrom: # Service name of MySQL service
                 secretKeyRef:
-                  name: db-secrets
+                  name: app-secrets
                   key: MYSQL_HOST            
               #value: "3306"
             #- name: MYSQL_ROOT_PASSWORD
@@ -46,17 +46,17 @@ spec:
             - name: DataBaseName
               valueFrom:
                 secretKeyRef:
-                  name: db-secrets
+                  name: app-secrets
                   key: MYSQL_DATABASE
             - name: AppUserName
               valueFrom:
                 secretKeyRef:
-                  name: db-secrets
+                  name: app-secrets
                   key: MYSQL_USER
             - name: DataBasePassword
               valueFrom:
                 secretKeyRef:
-                  name: db-secrets
+                  name: app-secrets
                   key: MYSQL_PASSWORD
       imagePullSecrets: # if dockerhub registry is private
         - name: # Specify the image pull secret name if required
