@@ -32,29 +32,31 @@ spec:
             - name: app-log-pv
               mountPath: /var/log/apache2
           env:
-            - name: MYSQL_HOST
-              value:    # Service name of MySQL service
-            - name: MYSQL_PORT
-              value: "3306"
-            - name: MYSQL_ROOT_PASSWORD
+            - name: DataBaseHost
+              valueFrom: # Service name of MySQL service
+                secretKeyRef:
+                  name: db-secrets
+                  key: MYSQL_HOST            
+              #value: "3306"
+            #- name: MYSQL_ROOT_PASSWORD
+              #valueFrom:
+                #secretKeyRef:
+                  #name: app-secrets
+                  #key: MYSQL_ROOT_PASSWORD
+            - name: DataBaseName
               valueFrom:
                 secretKeyRef:
-                  name: database-secrets
-                  key: MYSQL_ROOT_PASSWORD
-            - name: MYSQL_DATABASE
-              valueFrom:
-                secretKeyRef:
-                  name: database-secrets
+                  name: db-secrets
                   key: MYSQL_DATABASE
-            - name: MYSQL_USER
+            - name: AppUserName
               valueFrom:
                 secretKeyRef:
-                  name: database-secrets
+                  name: db-secrets
                   key: MYSQL_USER
-            - name: MYSQL_PASSWORD
+            - name: DataBasePassword
               valueFrom:
                 secretKeyRef:
-                  name: database-secrets
+                  name: db-secrets
                   key: MYSQL_PASSWORD
       imagePullSecrets: # if dockerhub registry is private
         - name: # Specify the image pull secret name if required
