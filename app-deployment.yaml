@@ -58,6 +58,22 @@ spec:
                 secretKeyRef:
                   name: app-secrets
                   key: MYSQL_PASSWORD
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: AWS_SECRET_ACCESS_KEY 
+            - name: AWS_DEFAULT_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: AWS_DEFAULT_REGION
+                  
       imagePullSecrets: # if dockerhub registry is private
         - name: # Specify the image pull secret name if required
         # volume for public html pv
