@@ -21,16 +21,22 @@ spec:
             - containerPort: 8080
           env:
             - name: MYSQL_HOST
-              value: "masktv-mysql-service"
-            - name: MYSQL_PORT
-              value: "3306"
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: MYSQL_HOST
+            #- name: MYSQL_PORT
+              #valueFrom:
+                #secretKeyRef:
+                  #name: database-secrets
+                  #key: MYSQL_USER
             - name: MYSQL_USER
               valueFrom:
                 secretKeyRef:
-                  name: database-secrets
+                  name: app-secrets
                   key: MYSQL_USER
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: database-secrets
+                  name: app-secrets
                   key: MYSQL_PASSWORD
