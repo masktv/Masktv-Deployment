@@ -76,8 +76,9 @@ spec:
                   
       imagePullSecrets: # if dockerhub registry is private
         - name: # Specify the image pull secret name if required
-        # volume for public html pv
+
       volumes:
+        # volume for public html pv
         - name: masktv-app-pv
           persistentVolumeClaim:
             claimName: masktv-app-pvc
