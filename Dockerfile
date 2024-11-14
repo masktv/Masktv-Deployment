@@ -59,9 +59,9 @@ RUN echo "SetEnv DataBaseName ${DataBaseName}" >> /etc/apache2/apache2.conf \
     && echo "SetEnv DataBasePassword ${DataBasePassword}" >> /etc/apache2/apache2.conf
 
 # in case of tar download and extract from s3 (allready extractedfile) 
-RUN aws s3 cp s3://....bucket-name....../file.tar.gz . \
-    && tar -xzf file.tar.gz -C /var/www/ \
-    && rm file.tar.gz \
+RUN aws s3 cp s3://....bucket-name....../html.tar.gz . \
+    && tar -xzf html.tar.gz -C /var/www/ \
+    && rm html.tar.gz \
     && chown -R www-data:www-data /var/www/html/ \
     && chmod -R 755 /var/www/html/
 
