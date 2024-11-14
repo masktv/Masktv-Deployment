@@ -40,7 +40,7 @@ RUN  rm /etc/apache2/sites-enabled/000-default.conf
 COPY ./domain.conf /etc/apache2/sites-enabled/
 COPY ./subdomain.conf /etc/apache2/sites-enabled/
 COPY ./subdomain1.conf /etc/apache2/sites-enabled/
-COPY ./php.conf /etc/apache2/sites-enabled/
+
 
 # setting up credential to download data from s3
 ENV AWS_ACCESS_KEY_ID= ..........access_key
