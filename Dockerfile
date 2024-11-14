@@ -40,23 +40,31 @@ RUN  rm /etc/apache2/sites-enabled/000-default.conf
 COPY ./domain.conf /etc/apache2/sites-enabled/
 COPY ./subdomain.conf /etc/apache2/sites-enabled/
 COPY ./subdomain1.conf /etc/apache2/sites-enabled/
+COPY ./php.conf /etc/apache2/sites-enabled/
 
 # setting up credential to download data from s3
 ENV AWS_ACCESS_KEY_ID= ..........access_key
 ENV AWS_SECRET_ACCESS_KEY= ........secret_access_key
 ENV AWS_DEFAULT_REGION= .........region
 
-# Download public_html from S3 to /var/www/html
-RUN aws s3 cp s3://....bucket-name...../public_html/ /var/www/html --recursive \     
-    && chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
-    
-# in case of tar download and extract 
+# Download public_html from S3 to /var/www/html 
+#RUN aws s3 cp s3://....bucket-name...../public_html/ /var/www/html --recursive \     
+    #&& chown -R www-data:www-data /var/www/html \
+    #&& chmod -R 755 /var/www/html
+
+# Add Entries of ENV in apache2.conf file for dynamic
+RUN echo "SetEnv DataBaseName ${DataBaseName}" >> /etc/apache2/apache2.conf \
+    && echo "SetEnv AppUserName ${AppUserName}" >> /etc/apache2/apache2.conf \
+    && echo "SetEnv DataBaseHost ${DataBaseHost}" >> /etc/apache2/apache2.conf \
+    && echo "SetEnv DataBasePassword ${DataBasePassword}" >> /etc/apache2/apache2.conf
+
+# in case of tar download and extract from s3 (allready extractedfile) 
 RUN aws s3 cp s3://....bucket-name....../file.tar.gz . \
     && tar -xzf file.tar.gz -C /var/www/ \
     && rm file.tar.gz \
     && chown -R www-data:www-data /var/www/html/ \
     && chmod -R 755 /var/www/html/
+
 # Expose port 80
 EXPOSE 80
 
