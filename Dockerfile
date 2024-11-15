@@ -34,13 +34,15 @@ RUN a2enmod php7.4 \
     && a2enmod rewrite
 
 # delete default site setting file
-RUN  rm /etc/apache2/sites-enabled/000-default.conf
-
-# Copy Apache site configuration files
+RUN  rm /etc/apache2/sites-enabled/000-default.conf \
+     && rm /etc/apache2/apache2.conf
+     
+     
+# Copy Apache site configuration files & apache config file
 COPY ./domain.conf /etc/apache2/sites-enabled/
 COPY ./subdomain.conf /etc/apache2/sites-enabled/
 COPY ./subdomain1.conf /etc/apache2/sites-enabled/
-
+COPY ./apache2.conf /etc/apache2/
 
 # setting up credential to download data from s3
 ENV AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
@@ -53,10 +55,10 @@ ENV AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
     #&& chmod -R 755 /var/www/html
 
 # Add Entries of ENV in apache2.conf file for dynamic
-RUN echo "SetEnv DataBaseName ${DataBaseName}" >> /etc/apache2/apache2.conf \
-    && echo "SetEnv AppUserName ${AppUserName}" >> /etc/apache2/apache2.conf \
-    && echo "SetEnv DataBaseHost ${DataBaseHost}" >> /etc/apache2/apache2.conf \
-    && echo "SetEnv DataBasePassword ${DataBasePassword}" >> /etc/apache2/apache2.conf
+#RUN echo "SetEnv DataBaseName ${DataBaseName}" >> /etc/apache2/apache2.conf \
+    #&& echo "SetEnv AppUserName ${AppUserName}" >> /etc/apache2/apache2.conf \
+    #&& echo "SetEnv DataBaseHost ${DataBaseHost}" >> /etc/apache2/apache2.conf \
+    #&& echo "SetEnv DataBasePassword ${DataBasePassword}" >> /etc/apache2/apache2.conf
 
 # in case of tar download and extract from s3 (allready extractedfile) 
 RUN aws s3 cp s3://....bucket-name....../html.tar.gz . \
