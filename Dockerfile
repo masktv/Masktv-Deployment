@@ -49,10 +49,6 @@ ENV AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
 ENV AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
 ENV AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
 
-# Download public_html from S3 to /var/www/html 
-#RUN aws s3 cp s3://....bucket-name...../public_html/ /var/www/html --recursive \     
-    #&& chown -R www-data:www-data /var/www/html \
-    #&& chmod -R 755 /var/www/html
 
 # Add Entries of ENV in apache2.conf file for dynamic
 #RUN echo "SetEnv DataBaseName ${DataBaseName}" >> /etc/apache2/apache2.conf \
