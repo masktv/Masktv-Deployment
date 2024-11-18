@@ -12,7 +12,7 @@ spec:
   volumeMode: Filesystem
   accessModes:
     - ReadWriteMany  # Allows multiple Pods to read and write simultaneously
-  persistentVolumeReclaimPolicy: Retain  # Change to Retain for data preservation
+  persistentVolumeReclaimPolicy: Delete  # Change to Retain for data preservation
   local:
     path: /mnt/EFS/app/public_html # Ensure this directory exists on the node
   nodeAffinity:
