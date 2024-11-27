@@ -45,9 +45,9 @@ COPY ./subdomain1.conf /etc/apache2/sites-enabled/
 COPY ./apache2.conf /etc/apache2/
 
 # setting up credential to download data from s3
-ENV AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-ENV AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-ENV AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+ENV AWS_ACCESS_KEY_ID=
+ENV AWS_SECRET_ACCESS_KEY=
+ENV AWS_DEFAULT_REGION=
 
 
 # Add Entries of ENV in apache2.conf file for dynamic
