@@ -45,6 +45,7 @@ COPY ./subdomain1.conf /etc/apache2/sites-enabled/
 COPY ./apache2.conf /etc/apache2/
 
 # Set build arguments for AWS credentials (do not hardcode them here)
+             # run docker build cammand with --build-arg option 
 ARG AWS_ACCESS_KEY_ID
 ARG AWS_SECRET_ACCESS_KEY
 ARG AWS_DEFAULT_REGION
