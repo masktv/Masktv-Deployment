@@ -14,19 +14,14 @@ TEMPLATE CONFIGURATION
     - User data script 
     
 ...............................
-CLUSTER SETUP :-
-  Create NODE GROUP With template
-  Create Acess entry by kubernetes user And type --> standard, policy scope --> AmazonEKSClusterAdminPolicy
-  
-...............................
 SERVER SETUP :- [jenkines-server]
 Instance type : c5large  Family: [......aws linux......]
-  software or tools install on that 
+  software or tools install  
     1) git 
     2) docker 
       yum install docker -y 
       systemctl start docker 
-      systemctl enable docker   
+      systemctl enable docker 
     3) Jenkins
 
   login to dockerhub
@@ -40,16 +35,16 @@ Instance type : c5large  Family: [......aws linux......]
       -  sudo mv ./kubectl /usr/local/bin/kubectl
       -  kubectl version --client
 
-  b. Configure kubernetes user to perform kubernetes deployment task
-     - configure user with aws configure cammand. [..........mentioun same user that access entry have created in kubernetes ckuster............]
-        aws configure 
+  b. Configure kubernetes user to perform kubernetes deployment task ----> if use role no need to configure user.
+     - configure user with aws configure cammand.
 
   c. Configure cluster on cluster  
       using kubeconfig update cammand 
       -  aws eks --region <region> update-kubeconfig --name <cluster-name>
 
   d. Deploy ingress controller And service 
-  
+
+ATTACH EFS TO JENKINS EC2, AND SCHEDULE CRONJOB OF CMD TO ENTRE IN MASTER POD AND RUN MYSQLDUMP CMD TO TAKE BACKUP AND STORE IN EFS
 ...............................
 JENKINES SERVER SETUP
 
