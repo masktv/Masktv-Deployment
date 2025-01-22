@@ -12,6 +12,6 @@ spec:
   volumeMode: Filesystem
   accessModes:
     - ReadWriteMany
-  persistentVolumeReclaimPolicy: Delete
+  persistentVolumeReclaimPolicy: Retain
   local:
     path: /mnt/EFS/app/public_html  # Path on all nodes
