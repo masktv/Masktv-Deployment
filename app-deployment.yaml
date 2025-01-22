@@ -31,6 +31,8 @@ spec:
               mountPath: /var/www/html 
             - name: app-log-pv
               mountPath: /var/log/apache2
+            - name: app-config-pv
+              mountPath: /etc/apache2
           #env:
             #- name: DataBaseHost
               #valueFrom: # Service name of MySQL service
@@ -61,7 +63,7 @@ spec:
       imagePullSecrets: # if dockerhub registry is private
         - name: # Specify the image pull secret name if required
       volumes:
-        # volume for public html pv
+        # volume for html pv
         - name: masktv-app-pv
           persistentVolumeClaim:
             claimName: masktv-app-pvc
@@ -69,6 +71,10 @@ spec:
         - name: app-log-pv
           persistentVolumeClaim: 
             claimName: app-log-pvc
+        # volume for apache config-file pv
+        - name: app-config-pv
+          persistentVolumeClaim:
+            claimName: app-config-pvc
   strategy: 
     type: RollingUpdate
     rollingUpdate: 
