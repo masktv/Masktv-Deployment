@@ -44,8 +44,9 @@ mount -a
 mkdir /mnt/EFS/app
 mkdir /mnt/EFS/db
 
-mkdir /mnt/EFS/app/public_html
-mkdir /mnt/EFS/app/log
+mkdir /mnt/EFS/app/html-file
+mkdir /mnt/EFS/app/log-file
+mkdir /mnt/EFS/app/config-file
 
-mkdir /mnt/EFS/db/Log
-mkdir /mnt/EFS/db/database
+mkdir /mnt/EFS/db/log-file
+mkdir /mnt/EFS/db/config-file
