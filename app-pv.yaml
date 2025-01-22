@@ -6,20 +6,12 @@ metadata:
   labels:
     app: masktv-app
 spec:
-  storageClassName: "" # Use a specific storage class or leave empty for default
+  storageClassName: ""
   capacity:
-    storage: 50Gi  # Set according to application size
+    storage: 50Gi
   volumeMode: Filesystem
   accessModes:
-    - ReadWriteMany  # Allows multiple Pods to read and write simultaneously
-  persistentVolumeReclaimPolicy: Delete  # Change to Retain for data preservation
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Delete
   local:
-    path: /mnt/EFS/app/public_html # Ensure this directory exists on the node
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-            - ip-10-0-3-224.ap-south-1.compute.internal
+    path: /mnt/EFS/app/public_html  # Path on all nodes
