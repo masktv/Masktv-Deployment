@@ -14,4 +14,4 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   local:
-    path: /mnt/EFS/app/public_html  # Path on all nodes
+    path: /mnt/EFS/app/html-file  # Path on all nodes
