@@ -14,12 +14,4 @@ spec:
   persistentVolumeReclaimPolicy:  Retain  # Change to Retain for data preservation
   local:
     path: /mnt/EFS/app/log # Ensure this directory exists on the node
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-            - ip-10-0-3-224.ap-south-1.compute.internal
-            
+
