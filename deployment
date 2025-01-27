@@ -65,6 +65,9 @@ For Automation project we will have to create 1 job and 1 or 2 pipeline.
   pipeline 2nd ;- kubernetes cluster configure, clone the repo from github, build the Dokcker image from app.dockerfile, docker push image on dockerhub, then deploy app.pv, app.pvc, app.deployment and app.service, ingress rule, app.hpa.
 
 
+# Kubernetes addon Update
+1.  aws-efs-csi-driver --> aws eks update-addon --cluster-name test --addon-name aws-efs-csi-driver --addon-version v2.1.4-eksbuild.1
+2.  CoreDNS -->  aws eks update-addon --cluster-name test --addon-name coredns --addon-version v1.11.4-eksbuild.2
 
 
 # problm facing withat that:
