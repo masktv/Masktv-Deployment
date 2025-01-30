@@ -65,11 +65,18 @@ For Automation project we will have to create 1 job and 1 or 2 pipeline.
   pipeline 2nd ;- kubernetes cluster configure, clone the repo from github, build the Dokcker image from app.dockerfile, docker push image on dockerhub, then deploy app.pv, app.pvc, app.deployment and app.service, ingress rule, app.hpa.
 
 
-# Kubernetes addon Update
-1.  aws-efs-csi-driver --> aws eks update-addon --cluster-name test --addon-name aws-efs-csi-driver --addon-version v2.1.4-eksbuild.1
-2.  CoreDNS -->  aws eks update-addon --cluster-name test --addon-name coredns --addon-version v1.11.4-eksbuild.2
+
+
 
 
 # problm facing withat that:
 1) isnt connection establish between database and application pod. {ERROR --> php_network_getaddresses: getaddrinfo failed: Name or service not known}
 2) if more than one replica try to deploy in sts dtabase not exicute in /var/lib/mysql.
+3) for dynamic provisioning, ebs-csi-driver not creating pvc and pv.
+    ---> SOLVED 
+    steps: -->
+    1. add ebs-csi-driver at time create cluster.
+    2. Modify instance metadata options
+        choose WorkerNode ---> instance setting --> modify instance metadata --> chnage from OPTIONAL to REQUIRED 
+    3. after all changes performe go to server where cluster configure and run that command .... kubectl -n kube-system delete pod -l app=ebs-csi-controller
+    4. check pod status and also check in violume section in ec2 volume section, there new olume created
