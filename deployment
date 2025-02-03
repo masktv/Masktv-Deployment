@@ -77,7 +77,11 @@ IAM User To Perform Deployment Action.
 Access Entry to Access Cluster by IAM User To Perform Deployment Task.
 
   -  After creating cluster, Go to Access --> Create Access Entry --> Select IAM USER in IAM PRINCIPLE --> Next --> ADD AmazonEKSClusterAdminPolicy in Access policie --> Add Policy --> Next --> Review And Create Policy.
-    
+
+AddOns Need To install.
+
+  -  CoreDNS, Amazon EBS CSI Driver, Amazon VPC CNI, Amazon EFS CSI Driver, kube-proxy, Metrics Server
+
 ..................................
 
 # problm facing withat that:
