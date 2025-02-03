@@ -2,8 +2,5 @@
 2] Network not running in pod { apt-get update -------resolve issue }
 3} How to route write req on master pod { Master-Slave } and read request on slave in database replication 
 4} Launch node from Launch template 
-5} MYSQL BACKUP :- run kubectl exec cmd and mydump on jenkins ec2 server where kubectl configure and store that bacckup on that server path like /tmp and that /tmp backed by efs 
 
-
-storageclass --> storage class not creating [efs csi error]
 connection issue in appc pod and database pod --> php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution
