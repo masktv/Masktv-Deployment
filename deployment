@@ -29,7 +29,7 @@ Instance type : c5large  Family: [......aws linux......]
       -  kubectl version --client
 
   b. Configure kubernetes user to perform kubernetes deployment task ----> if use role no need to configure user.
-     - configure user with aws configure cammand.
+     - configure user with aws configure cammand [configure IAM User that have Access Entry Created in EKS cluster]
 
   c. Configure cluster on jenkins server
       using kubeconfig update cammand 
@@ -40,7 +40,7 @@ Instance type : c5large  Family: [......aws linux......]
 ATTACH EFS TO JENKINS EC2, AND SCHEDULE CRONJOB OF CMD TO ENTRE IN MASTER POD AND RUN MYSQLDUMP CMD TO TAKE BACKUP AND STORE IN EFS
 ...............................
 
-JENKINES SERVER UI
+--> JENKINES SERVER UI
 
 Credential for jenkins pipeline
   github credential
@@ -58,10 +58,27 @@ For Automation project we will have to create 1 job and 1 or 2 pipeline.
   pipeline 1st :- kubernetes cluster configure, clone the repo from github, build the Dokcker image from db.dockerfile, docker push image on dockerhub, then deploy kubernetes secret.yaml, and deploy db.pv, db.pvc, db.deployment and db.service, db.hpa. 
   pipeline 2nd ;- kubernetes cluster configure, clone the repo from github, build the Dokcker image from app.dockerfile, docker push image on dockerhub, then deploy app.pv, app.pvc, app.deployment and app.service, ingress rule, app.hpa.
 
+..................................
+--> Cluster Creation 
 
+Worker Node Role Permission.
+  -  AmazonEBSCSIDriverPolicy
+  -  AmazonEC2ContainerRegistryPullOnly
+  -  AmazonEC2ContainerRegistryReadOnly
+  -  AmazonEC2FullAccessAmazonEKS_CNI_Policy
+  -  AmazonEKSWorkerNodePolicy
+  -  AmazonElasticFileSystemFullAccess
+  -  CloudWatchAgentServerPolicy
+  -  CloudWatchLogsFullAccess
 
+IAM User To Perform Deployment Action.
+  -  AdministratorAccess
 
+Access Entry to Access Cluster by IAM User To Perform Deployment Task.
 
+  -  After creating cluster, Go to Access --> Create Access Entry --> Select IAM USER in IAM PRINCIPLE --> Next --> ADD AmazonEKSClusterAdminPolicy in Access policie --> Add Policy --> Next --> Review And Create Policy.
+    
+..................................
 
 # problm facing withat that:
 1) isnt connection establish between database and application pod. {ERROR --> php_network_getaddresses: getaddrinfo failed: Name or service not known}
