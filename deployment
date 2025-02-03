@@ -1,20 +1,13 @@
-deployment setup
+
 ...............................
+--> WORKER NODE
+
 EFS 
-  Create EFS filesystem 
+  Create EFS filesystem attach it to worker node at specific path
   
 ...............................
-TEMPLATE CONFIGURATION 
-  TO ATTACH EFS AUTOMATICALLY TO NODE CREATED THROUGH LOAD AND INSTALL, ALLOW NECCESORY PORT ON FIREWALL. 
-    FOR TEMPLATE :- {DEPLOYMENT-CONFIG IN TEMPLATE}
-        steps to create template = create instance -> create image -> create template from instance
-    - Use instance type: c5xlarge
-    - Security-Group
-    - Key-Pair
-    - User data script 
-    
-...............................
-SERVER SETUP :- [jenkines-server]
+--> JENKINS SERVER EC2
+
 Instance type : c5large  Family: [......aws linux......]
   software or tools install  
     1) git 
@@ -38,20 +31,21 @@ Instance type : c5large  Family: [......aws linux......]
   b. Configure kubernetes user to perform kubernetes deployment task ----> if use role no need to configure user.
      - configure user with aws configure cammand.
 
-  c. Configure cluster on cluster  
+  c. Configure cluster on jenkins server
       using kubeconfig update cammand 
       -  aws eks --region <region> update-kubeconfig --name <cluster-name>
 
-  d. Deploy ingress controller And service 
+  d. Deploy ingress controller And ingress service
 
 ATTACH EFS TO JENKINS EC2, AND SCHEDULE CRONJOB OF CMD TO ENTRE IN MASTER POD AND RUN MYSQLDUMP CMD TO TAKE BACKUP AND STORE IN EFS
 ...............................
-JENKINES SERVER SETUP
+
+JENKINES SERVER UI
 
 Credential for jenkins pipeline
   github credential
-  dockerhub credential
-  kubernetes user credential
+  # dockerhub credential
+  # kubernetes user credential
 
 Necessory plugins on jenkines server  
   Pipeline-plugin
