@@ -4,3 +4,8 @@
 4} Launch node from Launch template 
 
 connection issue in appc pod and database pod --> php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution
+
+
+
+
+/etc/apt/sources.list
