@@ -14,4 +14,13 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   local:
-    path: /mnt/EFS/app/html-file  # Path on all nodes
+    path: /mnt/EFS  # Path on all nodes
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - ip-172-31-20-250.ap-south-1.compute.internal
+
