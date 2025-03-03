@@ -1,11 +1,4 @@
-1] kuberbetes app pod not connect with database pod { php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution }
-2] Network not running in pod { apt-get update -------resolve issue }
-3} How to route write req on master pod { Master-Slave } and read request on slave in database replication 
-4} Launch node from Launch template 
 
-connection issue in appc pod and database pod --> php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution
+1} How to route write req on master pod { Master-Slave } and read request on slave in database replication 
+2} how to configure worker from launch configuration
 
-
-
-
-/etc/apt/sources.list
