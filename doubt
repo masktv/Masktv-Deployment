@@ -1,4 +1,4 @@
 
 1} How to route write req on master pod { Master-Slave } and read request on slave in database replication 
 2} how to configure worker from launch configuration
-
+3} if i modified application file and again deploy it, then it not modify chnages in efs.
