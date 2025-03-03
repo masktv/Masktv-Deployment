@@ -31,22 +31,14 @@ EFS_DNS_NAME="fs-0643cec48dfd5d7f9.efs.${REGION}.amazonaws.com"
 
 # .......................Mount EFS..............................
 
-mount -t nfs ${EFS_DNS_NAME}:/ /mnt/EFS
+mount -t nfs ${EFS_DNS_NAME}:/ /mnt
 
 # ............add entry to /etc/fstab to ensure it's mounted on reboot.......................
 
-echo "${EFS_DNS_NAME}:/ /mnt/EFS nfs defaults,_netdev 0 0" >> /etc/fstab
+echo "${EFS_DNS_NAME}:/ /mnt nfs defaults,_netdev 0 0" >> /etc/fstab
 
 # ......................Refresh Mount-path......................
 
 mount -a
 
-mkdir /mnt/EFS/app
-mkdir /mnt/EFS/db
 
-mkdir /mnt/EFS/app/html-file
-mkdir /mnt/EFS/app/log-file
-mkdir /mnt/EFS/app/config-file
-
-mkdir /mnt/EFS/db/log-file
-mkdir /mnt/EFS/db/config-file
