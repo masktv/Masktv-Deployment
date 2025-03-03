@@ -34,6 +34,7 @@ RUN a2enmod php7.4 \
     && a2enmod rewrite
 
 # delete default site setting file
+# if i will not want to make apache2 config file make persist then we use this config 
 RUN  rm /etc/apache2/sites-enabled/000-default.conf \
      && rm /etc/apache2/apache2.conf
      
@@ -43,31 +44,7 @@ COPY ./domain.conf /etc/apache2/sites-enabled/
 COPY ./subdomain.conf /etc/apache2/sites-enabled/
 COPY ./subdomain1.conf /etc/apache2/sites-enabled/
 COPY ./apache2.conf /etc/apache2/
-
-# Set build arguments for AWS credentials (do not hardcode them here)
-             # run docker build cammand with --build-arg option 
-ARG AWS_ACCESS_KEY_ID
-ARG AWS_SECRET_ACCESS_KEY
-ARG AWS_DEFAULT_REGION
-
-# Set environment variables from build arguments (for use in AWS CLI)
-ENV AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-ENV AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-ENV AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
-
-
-# Add Entries of ENV in apache2.conf file for dynamic
-#RUN echo "SetEnv DataBaseName ${DataBaseName}" >> /etc/apache2/apache2.conf \
-    #&& echo "SetEnv AppUserName ${AppUserName}" >> /etc/apache2/apache2.conf \
-    #&& echo "SetEnv DataBaseHost ${DataBaseHost}" >> /etc/apache2/apache2.conf \
-    #&& echo "SetEnv DataBasePassword ${DataBasePassword}" >> /etc/apache2/apache2.conf
-
-# in case of tar download and extract from s3 (allready extractedfile) 
-RUN aws s3 cp s3://....bucket-name....../html.tar.gz . \
-    && tar -xzf html.tar.gz -C /var/www/ \
-    && rm html.tar.gz \
-    && chown -R www-data:www-data /var/www/html/ \
-    && chmod -R 755 /var/www/html/
+ 
 
 # Expose port 80
 EXPOSE 80
