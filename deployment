@@ -92,6 +92,6 @@ AddOns Need To install.
     steps: -->
     1. add ebs-csi-driver at time create cluster.
     2. Modify instance metadata options
-        choose WorkerNode ---> instance setting --> modify instance metadata --> chnage from OPTIONAL to REQUIRED 
+        choose WorkerNode ---> instance setting --> modify instance metadata --> chnage from REQUIRED to OPTIONAL
     3. after all changes performe go to server where cluster configure and run that command .... kubectl -n kube-system delete pod -l app=ebs-csi-controller
     4. check pod status and also check in volume section in ec2 volume section, there will have new volume created
