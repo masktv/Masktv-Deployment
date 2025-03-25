@@ -5,7 +5,7 @@ metadata:
   labels: 
     app: masktv-app
 spec:
-  replicas: 5
+  replicas: 4
   selector:
     matchLabels:
       app: masktv-app
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: masktv-app-container
-          image: 
+          image: masktv/masktv:app
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -33,45 +33,13 @@ spec:
               mountPath: /var/log/apache2
             - name: app-config-pv
               mountPath: /etc/apache2
-          #env:
-            #- name: DataBaseHost
-              #valueFrom: # Service name of MySQL service
-                #secretKeyRef:
-                  #name: app-secrets
-                  #key: MYSQL_HOST            
-              #value: "3306"
-            #- name: MYSQL_ROOT_PASSWORD
-              #valueFrom:
-                #secretKeyRef:
-                  #name: app-secrets
-                  #key: MYSQL_ROOT_PASSWORD
-            #- name: DataBaseName
-              #valueFrom:
-                #secretKeyRef:
-                  #name: app-secrets
-                  #key: MYSQL_DATABASE
-            #- name: AppUserName
-              #valueFrom:
-                #secretKeyRef:
-                  #name: app-secrets
-                  #key: MYSQL_USER
-            #- name: DataBasePassword
-              #valueFrom:
-                #secretKeyRef:
-                  #name: app-secrets
-                  #key: MYSQL_PASSWORD  
-      imagePullSecrets: # if dockerhub registry is private
-        - name: # Specify the image pull secret name if required
       volumes:
-        # volume for html pv
         - name: masktv-app-pv
           persistentVolumeClaim:
             claimName: masktv-app-pvc
-        # volume for log pv
         - name: app-log-pv
           persistentVolumeClaim: 
             claimName: app-log-pvc
-        # volume for apache config-file pv
         - name: app-config-pv
           persistentVolumeClaim:
             claimName: app-config-pvc
