@@ -1,32 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: masktv-download-deployment
+  name: download-deployment
   labels:
-    app: masktv-download
+    app: download
 spec:
-  replicas: 1  # Only one replica needed for downloading the files
+  replicas: 1
   selector:
     matchLabels:
-      app: masktv-download
+      app: download
   template:
     metadata:
       labels:
-        app: masktv-download
+        app: download
     spec:
-      containers:
-        - name: masktv-download-container
-          image: masktv/masktv:app  # Replace with the image used for the download task
+      initContainers:
+        - name: init-download-extract
+          image: masktv/masktv:app  # Replace with your actual image
           command:
             - /bin/sh
             - -c
             - |
-              aws s3 cp s3://testing-image-html/app-24-3.tar.gz /tmp/ && \
-              tar -xzf /tmp/app-24-3.tar.gz -C /tmp/ && \
-              cp -r /tmp/html/* /var/www/html/ && \
-              rm -rf /tmp/html && \
-              chown -R www-data:www-data /var/www/html && \
-              chmod -R 755 /var/www/html
+              # Download and extract app-24-3.tar.gz from S3
+              aws s3 cp s3://testing-image-html/app-24-3.tar.gz /tmp/  # Download to /tmp
+              tar -xzf /tmp/app-24-3.tar.gz -C /tmp/  # Extract to /tmp
+              cp -r /tmp/html/* /var/www/html/  # Copy extracted files to /var/www/html
+              rm -rf /tmp/html  # Clean up extracted files from /tmp
+              chown -R www-data:www-data /var/www/html  # Set ownership of the files
+              chmod -R 755 /var/www/html  # Set permissions for the files
           env:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
@@ -36,12 +37,23 @@ spec:
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: aws-credentials  # Secret name with AWS credentials
+                  name: aws-credentials  
                   key: AWS_SECRET_ACCESS_KEY
           volumeMounts:
             - name: masktv-app-pv
               mountPath: /var/www/html  # Mount the persistent volume to extract into this path
+      containers:
+        - name: download-container
+          image: masktv/masktv:app  # Replace with your actual image
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+          volumeMounts:
+            - name: masktv-app-pv
+              mountPath: /var/www/html  # Mount the persistent volume to serve the files
       volumes:
         - name: masktv-app-pv
           persistentVolumeClaim:
-            claimName: masktv-app-pvc
+            claimName: masktv-app-pvc  # PVC for storing the extracted files
