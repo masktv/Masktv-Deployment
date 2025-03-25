@@ -1,1 +1,47 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: masktv-download-deployment
+  labels:
+    app: masktv-download
+spec:
+  replicas: 1  # Only one replica needed for downloading the files
+  selector:
+    matchLabels:
+      app: masktv-download
+  template:
+    metadata:
+      labels:
+        app: masktv-download
+    spec:
+      containers:
+        - name: masktv-download-container
+          image: masktv/masktv:app  # Replace with the image used for the download task
+          command:
+            - /bin/sh
+            - -c
+            - |
+              aws s3 cp s3://testing-image-html/app-24-3.tar.gz /tmp/ && \
+              tar -xzf /tmp/app-24-3.tar.gz -C /tmp/ && \
+              cp -r /tmp/html/* /var/www/html/ && \
+              rm -rf /tmp/html && \
+              chown -R www-data:www-data /var/www/html && \
+              chmod -R 755 /var/www/html
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-credentials  # Secret name with AWS credentials
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aws-credentials  # Secret name with AWS credentials
+                  key: AWS_SECRET_ACCESS_KEY
+          volumeMounts:
+            - name: masktv-app-pv
+              mountPath: /var/www/html  # Mount the persistent volume to extract into this path
+      volumes:
+        - name: masktv-app-pv
+          persistentVolumeClaim:
+            claimName: masktv-app-pvc
