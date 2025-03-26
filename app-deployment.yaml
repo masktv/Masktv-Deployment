@@ -31,8 +31,8 @@ spec:
               mountPath: /var/www/html 
             - name: app-log-pv
               mountPath: /var/log/apache2
-            - name: app-config-pv
-              mountPath: /etc/apache2
+            #- name: app-config-pv
+             # mountPath: /etc/apache2
       volumes:
         - name: masktv-app-pv
           persistentVolumeClaim:
@@ -40,9 +40,9 @@ spec:
         - name: app-log-pv
           persistentVolumeClaim: 
             claimName: app-log-pvc
-        - name: app-config-pv
-          persistentVolumeClaim:
-            claimName: app-config-pvc
+        #- name: app-config-pv
+         # persistentVolumeClaim:
+          #  claimName: app-config-pvc
   strategy: 
     type: RollingUpdate
     rollingUpdate: 
