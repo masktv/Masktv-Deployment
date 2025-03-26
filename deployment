@@ -81,7 +81,14 @@ Access Entry to Access Cluster by IAM User To Perform Deployment Task.
 AddOns Need To install.
 
   -  CoreDNS, Amazon EBS CSI Driver, Amazon VPC CNI, Amazon EFS CSI Driver, kube-proxy, Metrics Server
+.......................................................................................................
 
+AUTOMATION OF HTML OR DEPLOYMENT VIA JENKINS
+  -  Automation Process --> html
+  -  make tar.gz of all file in html dir with cmd tar -czf file.tar.gz * [after extraction we should get file under html not html]
+  -  every tim eto deploy file in production we have need to save file with new name on s3
+  -  after mention file name in download.yaml
+  -  run kubectl apply -f download.yaml to deploy changes in production
 ..................................
 
 # problm facing withat that:
