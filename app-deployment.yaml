@@ -2,10 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: masktv-app-deployment
-  labels: 
+  labels:
     app: masktv-app
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
       app: masktv-app
@@ -14,9 +14,36 @@ spec:
       labels:
         app: masktv-app
     spec:
+      initContainers:
+        - name: init-download-extract
+          image: masktv/masktv:app  # Using Amazon Linux as the base image for AWS CLI
+          command:
+            - /bin/sh
+            - -c
+            - |
+              aws s3 cp s3://testing-image-html/html.tar.gz /tmp/ && \
+              tar -xzf /tmp/html.tar.gz -C /tmp/ && \
+              cp -r /tmp/html/* /var/www/html/ && \
+              rm -rf /tmp/html && \
+              chown -R www-data:www-data /var/www/html && \
+              chmod -R 755 /var/www/html
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-credentials  # Secret name with AWS credentials
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aws-credentials  # Secret name with AWS credentials
+                  key: AWS_SECRET_ACCESS_KEY
+          volumeMounts:
+            - name: masktv-app-pv
+              mountPath: /var/www/html  # Mount PVC to init container to extract into this path
       containers:
         - name: masktv-app-container
-          image: masktv/masktv:app
+          image: masktv/masktv:app  # Replace with your actual image
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -28,23 +55,23 @@ spec:
               memory: 100Mi
           volumeMounts:
             - name: masktv-app-pv
-              mountPath: /var/www/html 
+              mountPath: /var/www/html
             - name: app-log-pv
               mountPath: /var/log/apache2
-            #- name: app-config-pv
-             # mountPath: /etc/apache2
+            - name: app-config-pv
+              mountPath: /etc/apache2
       volumes:
         - name: masktv-app-pv
           persistentVolumeClaim:
             claimName: masktv-app-pvc
         - name: app-log-pv
-          persistentVolumeClaim: 
+          persistentVolumeClaim:
             claimName: app-log-pvc
-        #- name: app-config-pv
-         # persistentVolumeClaim:
-          #  claimName: app-config-pvc
-  strategy: 
+        - name: app-config-pv
+          persistentVolumeClaim:
+            claimName: app-config-pvc
+  strategy:
     type: RollingUpdate
-    rollingUpdate: 
+    rollingUpdate:
       maxSurge: 2
       maxUnavailable: 2
