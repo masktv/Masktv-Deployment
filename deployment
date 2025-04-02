@@ -86,15 +86,12 @@ AddOns Need To install.
 AUTOMATION OF HTML OR DEPLOYMENT VIA JENKINS
   -  Automation Process --> html
   -  make tar.gz of all file in html dir with cmd tar -czf file.tar.gz * [after extraction we should get file under html not html]
-  -  every tim eto deploy file in production we have need to save file with new name on s3
+  -  every time to deploy file in production we will have need to save file with new name on s3 / or if we using same name need to delete pod
   -  after mention file name in download.yaml
   -  run kubectl apply -f download.yaml to deploy changes in production
 ..................................
 
-# problm facing withat that:
-1) isnt connection establish between database and application pod. {ERROR --> php_network_getaddresses: getaddrinfo failed: Name or service not known}
-2) if more than one replica try to deploy in sts dtabase not exicute in /var/lib/mysql.
-3) for dynamic provisioning, ebs-csi-driver not creating pvc and pv.
+ for dynamic provisioning, ebs-csi-driver not creating pvc and pv.
     ---> SOLVED 
     steps: -->
     1. add ebs-csi-driver at time create cluster.
