@@ -1,4 +1,5 @@
 
+
 ...............................
 --> WORKER NODE
 
@@ -48,8 +49,15 @@ Credential for jenkins pipeline
   # kubernetes user credential
 
 Necessory plugins on jenkines server  
-  Pipeline-plugin
-  git-plugin
+  Pipeline stage view
+  ssh build agent
+  credential binding plugin
+  credential plugin
+  ssh agent plugin
+  docker pipeline
+  docker common plugn
+  docker api plugin  
+  git/github-plugin
   kubernetes-plugin
   docker plugin
 
