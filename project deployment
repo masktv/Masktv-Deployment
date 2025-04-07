@@ -1,0 +1,60 @@
+Credentials of User And Roles
+1. IAM User to perform Kubernetes Task :- 
+  - AdministratorAccess
+2. Role Attached At Cluster Creation (Cluster Iam Role) :-
+  - AmazonEC2ContainerRegistryPullOnly
+  - AmazonEKSBlockStoragePolicy
+  - AmazonEKSClusterPolicy
+  - AmazonEKSComputePolicy
+  - AmazonEKSLoadBalancingPolicy
+  - AmazonEKSNetworkingPolicy  
+  - AmazonEKSWorkerNodeMinimalPolicy
+3. Role policy Attchedto Eks Worker (NodeGroup Role) :-
+  -  AmazonEBSCSIDriverPolicy
+  -  AmazonEC2ContainerRegistryPullOnly
+  -  AmazonEC2ContainerRegistryReadOnly
+  -  AmazonEC2FullAccessAmazonEKS_CNI_Policy
+  -  AmazonEKSWorkerNodePolicy
+  -  AmazonElasticFileSystemFullAccess
+  -  CloudWatchAgentServerPolicy
+  -  CloudWatchLogsFullAccess
+4. IAM Configure To DownloaD Atifact from s3 :-
+  -  Get, Put, List Object
+  
+Cluster Creation 
+1. version 1.32
+2. AddONs :- CoreDNS, Amazon EBS CSI Driver, Amazon VPC CNI, Amazon EFS CSI Driver, kube-proxy, Metrics Server
+
+Worker SetUp 
+1. Modify Instance metadata From REQUIRED to OPTIONAL
+2. Attach EFS to making Logs File and AppFile Persist
+
+Jenkins Server SetUp
+1. Install jenkins
+    dnf install java-17-amazon-corretto -y   
+2. Install Kubecli
+    curl -LO "https://dl.k8s.io/release/v1.26.0/bin/linux/amd64/kubectl"
+    chmod +x ./kubectl
+    mv ./kubectl /usr/local/bin/kubectl
+    kubectl version --client  
+3. Install Docker  
+4. Install Git
+5. Configure IAM User to Perform kubernetes task [ User thats Access entry created in EKS-Cluster]
+   Permission of User :- AdministratorAccess
+6. Configure EKS Cluster
+  aws eks --region <region> update-kubeconfig --name <cluster-name>
+7. Install Ingress Controller And Its LoadBalancer Service. (Nginx-IngressController)
+8. Attach EFS to Dir and Schedule Cron for db backup with muysqldump with master pod host
+   kubectl exec -it [master-pod-name] -- sh -c "mysqldump -u [username] -p'[password]' [database_name]" > backup.sql
+................................................................................................................................................
+
+Application Configuration files
+1. download-deployment.yaml --> Download file from s3 and store in pv
+2. app-deployment.yaml --> Application Pod Deployment
+
+Database Configuration files
+1. init.sh --> replication user and pass 
+2. proxysql-configuration --> all env
+
+
+
