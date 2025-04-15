@@ -52,7 +52,7 @@ Application Configuration files
 1. download-deployment.yaml --> Download file from s3 and store in pv
 2. app-deployment.yaml --> Application Pod Deployment
 
-Database Configuration files
+Database Configuration files --> need to change following
 1. init.sh --> replication user and pass 
 2. proxysql-configuration --> all env
 
