@@ -13,7 +13,8 @@ Credentials of User And Roles
   -  AmazonEBSCSIDriverPolicy
   -  AmazonEC2ContainerRegistryPullOnly
   -  AmazonEC2ContainerRegistryReadOnly
-  -  AmazonEC2FullAccessAmazonEKS_CNI_Policy
+  -  AmazonEC2FullAccess
+  -  AmazonEKS_CNI_Policy
   -  AmazonEKSWorkerNodePolicy
   -  AmazonElasticFileSystemFullAccess
   -  CloudWatchAgentServerPolicy
